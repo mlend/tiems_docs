@@ -1,0 +1,4130 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mapstore.geosolutionsgroup.com/developer-guide/integrations/users/openId/">
+      
+      
+        <link rel="prev" href="../ldap/">
+      
+      
+        <link rel="next" href="../keycloak/">
+      
+      
+      <link rel="icon" href="../../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.6">
+    
+    
+      
+        <title>OpenID Connect - MapStore</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0e669242.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../theme/css/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#integration-with-openid-connect" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="MapStore" class="md-header__button md-logo" aria-label="MapStore" data-md-component="logo">
+      
+  <img src="../../../../img/mapstore2-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapStore
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OpenID Connect
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/geosolutions-it/MapStore2/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    geosolutions-it/MapStore2
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Navigation tabs -->
+<nav
+  class="md-tabs"
+  aria-label="Tabs"
+  data-md-component="tabs"
+>
+  <div class="md-grid">
+    <div style="display: flex; justify-content: space-between">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../user-guide/home-page/" class="md-tabs__link">
+          
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../requirements/" class="md-tabs__link">
+          
+  
+    
+  
+  Developer Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+    <ul class="md-tabs__list">
+       <li class="md-tabs__item pull-right">
+          <a href="https://github.com/geosolutions-it/MapStore2/releases"
+            class="md-tabs__link" target="_blank">Downloads</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/plugins"
+            class="md-tabs__link" target="_blank">Plugins</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/jsapi"
+            class="md-tabs__link" target="_blank">JavaScript API</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/framework"
+            class="md-tabs__link" target="_blank">Framework API</a>
+      </li>
+      <li class="md-tabs__item pull-right export-pdf-li" style="display:flex;" title="Export PDF"></li>
+    </ul>
+    </div>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="MapStore" class="md-nav__button md-logo" aria-label="MapStore" data-md-component="logo">
+      
+  <img src="../../../../img/mapstore2-logo.png" alt="logo">
+
+    </a>
+    MapStore
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/geosolutions-it/MapStore2/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    geosolutions-it/MapStore2
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_1">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/home-page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Page Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Managing Users and Groups
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Managing Users and Groups
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/managing-users-and-groups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/managing-users/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Users
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/managing-groups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Groups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Managing Contexts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Managing Contexts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/managing-contexts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/application-context/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Application Context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/extension-library/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extension Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/map-catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Catalog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/map-templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/resources-properties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resources Properties
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/share/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Maps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Maps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/exploring-maps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/toc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Table of Contents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/layer-settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Layer Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/filtering-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filtering Layers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/attributes-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attribute Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/export-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Export Layer Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/mapstore-toolbars/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MapStore Toolbars
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/print/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Printing a Map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/import/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Importing and Exporting Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Catalog Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performing Measurments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/map-views/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Views
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/street-view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Street View
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/longitudinal-profile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Longitudinal Profile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/geoprocessing-tool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoProcessing Tool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/navigation-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/background/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Background Selector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Timeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/footer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Footer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Dashboards
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Dashboards
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/exploring-dashboards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/adding-widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/connecting-widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connecting widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Stories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Stories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/exploring-stories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/story-setting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Story Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/title-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Title Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/banner-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Banner Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/paragraph-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Paragraph Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/immersive-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Immersive Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/geocarousel-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoCarousel Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/media-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Media Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/web-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Page section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/text-editor-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text Editor Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/content-image-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/content-video-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Video Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/content-map-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/content-web-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Page Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/media-editor-window/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Media Editor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../user-guide/configure-map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configue the map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Developer Guide
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../main-scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Scripts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure-and-general-architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developing with MapStore
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Developing with MapStore
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing-with-mapstore-2-intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project-structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folders Structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developing and Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-and-deploying/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and Deploying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reactjs-and-redux-introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Front End Technologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plugins-architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plugins architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../internationalization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Internationalization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../custom-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../customize-theme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Styling and theming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working with Extensions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../printing-module/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Printing Module
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../how-to-use-a-cdn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to use CDN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev-faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-conventions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code Conventions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../documentation-guidelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mapstore-migration-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How to
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            How to
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev-how-to/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dev How To
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plugins-howto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../writing-epics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Epics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../writing-actions-reducers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Actions and Reducers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../configuration-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../local-config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Application Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plugins-documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../maps-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../externalized-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Externalize Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../context-editor-config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration of Application Context Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LayerFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vector-style/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Styles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
+        
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Integrations
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10_1" checked>
+        
+          <label class="md-nav__link" for="__nav_3_10_1" id="__nav_3_10_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Users
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_10_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_10_1">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LDAP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OpenID Connect
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OpenID Connect
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-logo-an-text-in-login-form" class="md-nav__link">
+    Customizing logo an text in Login Form
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-openid-services" class="md-nav__link">
+    Supported OpenID services
+  </a>
+  
+    <nav class="md-nav" aria-label="Supported OpenID services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openid-connect-experimental" class="md-nav__link">
+    OpenID connect (experimental)
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenID connect (experimental)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-openid-provider-client" class="md-nav__link">
+    Configure OpenID provider client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-mapstore-back-end" class="md-nav__link">
+    Configure the MapStore back-end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-mapstore-front-end" class="md-nav__link">
+    Configure the MapStore front-end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-with-microsoft-azure" class="md-nav__link">
+    Example with Microsoft Azure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google" class="md-nav__link">
+    Google
+  </a>
+  
+    <nav class="md-nav" aria-label="Google">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-oauth-20-credentials-on-google-console" class="md-nav__link">
+    Create Oauth 2.0 credentials on Google Console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mapstore-back-end-for-google-openid" class="md-nav__link">
+    Configure MapStore back-end for Google OpenID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mapstore-front-end-for-google-openid" class="md-nav__link">
+    Configure MapStore front-end for Google OpenID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloak" class="md-nav__link">
+    Keycloak
+  </a>
+  
+    <nav class="md-nav" aria-label="Keycloak">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-keycloak-client" class="md-nav__link">
+    Configure keycloak Client
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mapstore-back-end-for-keycloak-openid" class="md-nav__link">
+    Configure MapStore back-end for Keycloak OpenID
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure MapStore back-end for Keycloak OpenID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-mapstore-front-end-for-keycloak-openid" class="md-nav__link">
+    Configure MapStore front-end for Keycloak OpenID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../keycloak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../keycloak-sso-impl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak-SSO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10_2" >
+        
+          <label class="md-nav__link" for="__nav_3_10_2" id="__nav_3_10_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_10_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10_2">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geoserver/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoServer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure-setups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mapstore-projects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MapStore Projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project-creation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Creation Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced-project-customization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Project Customization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Communicating with MapStore
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            Communicating with MapStore
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../map-query-parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MapViewer query paramaters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-logo-an-text-in-login-form" class="md-nav__link">
+    Customizing logo an text in Login Form
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-openid-services" class="md-nav__link">
+    Supported OpenID services
+  </a>
+  
+    <nav class="md-nav" aria-label="Supported OpenID services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openid-connect-experimental" class="md-nav__link">
+    OpenID connect (experimental)
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenID connect (experimental)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-openid-provider-client" class="md-nav__link">
+    Configure OpenID provider client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-mapstore-back-end" class="md-nav__link">
+    Configure the MapStore back-end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-mapstore-front-end" class="md-nav__link">
+    Configure the MapStore front-end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-with-microsoft-azure" class="md-nav__link">
+    Example with Microsoft Azure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google" class="md-nav__link">
+    Google
+  </a>
+  
+    <nav class="md-nav" aria-label="Google">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-oauth-20-credentials-on-google-console" class="md-nav__link">
+    Create Oauth 2.0 credentials on Google Console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mapstore-back-end-for-google-openid" class="md-nav__link">
+    Configure MapStore back-end for Google OpenID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mapstore-front-end-for-google-openid" class="md-nav__link">
+    Configure MapStore front-end for Google OpenID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloak" class="md-nav__link">
+    Keycloak
+  </a>
+  
+    <nav class="md-nav" aria-label="Keycloak">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-keycloak-client" class="md-nav__link">
+    Configure keycloak Client
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mapstore-back-end-for-keycloak-openid" class="md-nav__link">
+    Configure MapStore back-end for Keycloak OpenID
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure MapStore back-end for Keycloak OpenID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-mapstore-front-end-for-keycloak-openid" class="md-nav__link">
+    Configure MapStore front-end for Keycloak OpenID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="integration-with-openid-connect">Integration with OpenID connect</h1>
+<p>MapStore allows to integrate with <a href="https://openid.net/connect/">OpenID connect</a> services. This allows to use external services to authenticate users in MapStore. This is useful when you have to integrate MapStore with an existing authentication system, or when you want to use a third-party service to authenticate users.</p>
+<h2 id="customizing-logo-an-text-in-login-form">Customizing logo an text in Login Form</h2>
+<p>For details about the configuration for a specific service, please refer to the corresponding section below. If you want to customize the icon and/or text displayed, you can refer to the documentation of the <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/plugins#plugins.Login">LoginPlugin</a>.</p>
+<p>By default, the <code>authenticationProviders</code> field contains only <code>{"type": "basic", "provider": "geostore"}</code>, which represents the standard login on <strong>MapStore</strong> using a username and password. With this default configuration, when a user tries to log in, MapStore will display the classic login form.</p>
+<p>You can add additional providers to the list (e.g., <code>openid</code>), and they will be included as options in the login window. If you want to remove the login form and only use the added providers, you can remove the <code>geostore</code> entry from the <code>authenticationProviders</code> list.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If only one OpenID entry is present in <code>authenticationProviders</code> (and no <code>geostore</code> entry available), clicking on the login entry in the login menu will redirect directly to the OpenID provider login page configured, without showing the login window. If more than one entry is present in the <code>authenticationProviders</code> list, the the login window will be provided in the MapStore UI to be able choose the desired one for the authentication.</p>
+</div>
+<h2 id="supported-openid-services">Supported OpenID services</h2>
+<p>MapStore provides a generic OpenID connect provider (<code>oidc</code>) that can be used to configure any OpenID Connect service (Google, Microsoft, Keycloak, Facebook, Github, etc.). In addition, MapStore provides specific configurations for some services. This means that you can configure MapStore to use the following services out of the box:</p>
+<ul>
+<li>OpenID connect</li>
+<li>Google (specific)</li>
+<li>Keycloak (specific)</li>
+</ul>
+<p>For each service you want to include, you have to:</p>
+<ul>
+<li>configure the service (e.g., create a new application on Google Console, create a new client on Keycloak, etc.)</li>
+<li>properly configure the backend (in <code>mapstore-ovr.properties</code>)</li>
+<li>modify the <code>localConfig.json</code> file by adding a proper entry to the <code>authenticationProviders</code></li>
+</ul>
+<p>Moreover the keycloak provider allows to configure advanced features like the <strong>Single Sign On (SSO)</strong> with other applications and <strong>direct user database integration</strong> as for <a href="../ldap/#ldap-integration-with-mapstore">LDAP</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the moment the generic <code>oidc</code> provider does not support multiple instances. This means that you can configure only <strong>one</strong> generic <code>oidc</code> provider. You can configure the specific providers (e.g., <code>google</code>, <code>keycloak</code>) in addition to the generic <code>oidc</code> provider, but not multiple instances of the generic <code>oidc</code> provider. So for instance you can configure a generic <code>oidc</code> provider (e.g. connected to Github) plus a <code>google</code> and a <code>keycloak</code> provider, but not two generic <code>oidc</code> providers.</p>
+</div>
+<h3 id="openid-connect-experimental">OpenID connect (experimental)</h3>
+<p>In order to configure the generic OpenID provider with a service of your choice you have to:</p>
+<ul>
+<li>Configure the OpenID provider client</li>
+<li>Configure MapStore back-end</li>
+<li>Configure the MapStore front-end</li>
+</ul>
+<h4 id="configure-openid-provider-client">Configure OpenID provider client</h4>
+<p>This step depends on the specific OpenID provider so, please, refer to the specific documentation of the OpenID provider you are using. You can find some examples about how to configure a generic OpenID provider with Microsoft Azure in the following sections. The same information are valid for other OpenID providers, like Google, Keycloak, etc.
+You have to get the following information:</p>
+<ul>
+<li><strong>Client ID</strong>: the client id. This is the client id that must be present on the OpenID provider</li>
+<li><strong>Client Secret</strong>: the client secret. This is the client secret for the client id on the OpenID provider</li>
+<li><strong>Discovery URL</strong>: the discovery URL. This is the URL that contains all the information for the specific service.</li>
+</ul>
+<h4 id="configure-the-mapstore-back-end">Configure the MapStore back-end</h4>
+<p>In order to configure the generic OpenID provider you have to:</p>
+<ul>
+<li>create/edit <code>mapstore-ovr.properties</code> file (in data-dir or class path) to configure the generic provider this way:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># enables the keycloak OpenID Connect filter</span>
+<span class="na">oidcOAuth2Config.enabled</span><span class="o">=</span><span class="s">true</span>
+
+<span class="c1"># note: this is the client id have to be present on the OpenID provider</span>
+<span class="na">oidcOAuth2Config.clientId</span><span class="o">=</span><span class="s">mapstore-server</span>
+<span class="na">oidcOAuth2Config.clientSecret</span><span class="o">=</span><span class="s">&lt;THE_CLIENT_SECRET&gt;</span>
+<span class="c1"># the discovery URL</span>
+<span class="na">oidcOAuth2Config.discoveryUrl</span><span class="o">=</span><span class="s">http://keycloak:8080/auth/realms/mapstore/.well-known/openid-configuration</span>
+<span class="na">oidcOAuth2Config.sendClientSecret</span><span class="o">=</span><span class="s">true</span>
+<span class="c1"># create the user if not present</span>
+<span class="na">oidcOAuth2Config.autoCreateUser</span><span class="o">=</span><span class="s">true</span>
+<span class="na">oidcOAuth2Config.redirectUri</span><span class="o">=</span><span class="s">http://localhost:8080/mapstore/rest/geostore/openid/oidc/callback</span>
+<span class="c1"># Internal redirect URI (you can set it to relative path like this `../../..` to make this config work across domain)</span>
+<span class="na">oidcOAuth2Config.internalRedirectUri</span><span class="o">=</span><span class="s">http://localhost:8080/mapstore</span>
+<span class="c1"># user name attribute (default is `email`)</span>
+<span class="c1"># oidcOAuth2Config.principalKey=email</span>
+<span class="c1"># Optional role claims, if a claim contains roles, you can map them to MapStore roles. (roles can be only ADMIN or USER)</span>
+<span class="c1"># oidcOAuth2Config.rolesClaim=roles</span>
+<span class="c1"># Optional group claims, if a claim contains groups, you can map them to MapStore groups.</span>
+<span class="c1"># oidcOAuth2Config.groupsClaim=groups</span>
+<span class="c1"># Enables global logout from SSO, if properly confugred. false by default</span>
+<span class="c1"># oidcOAuth2Config.globalLogoutEnabled=true</span>
+<span class="c1"># Optional scopes parameter, that allows to customize the scopes to reqeuest. If empty, MapStore will use the one present in the discovery document</span>
+<span class="c1"># oidcOAuth2Config.scopes=email,profile</span>
+</code></pre></div>
+<ul>
+<li><code>oidcOAuth2Config.clientId</code>: the client id. This is the client id that must be present on the OpenID provider</li>
+<li><code>oidcOAuth2Config.clientSecret</code>: the client secret. This is the client secret for the client id on the OpenID provider</li>
+<li><code>oidcOAuth2Config.discoveryUrl</code>: the discovery URL. This is the URL that contains all the information for the specific service.</li>
+<li><code>oidcOAuth2Config.sendClientSecret</code>: if <code>true</code>, the client secret will be sent to the OpenID provider. If <code>false</code>, the client secret will not be sent.</li>
+<li><code>oidcOAuth2Config.autoCreateUser</code>: if <code>true</code>, the user will be created, if not present, in the MapStore database. If <code>false</code>, the user will not be created (useful if the user is managed by an external service like Keycloak or LDAP).</li>
+<li><code>oidcOAuth2Config.redirectUri</code>: the redirect URI. This is the URI that the OpenID provider, and it must be the effective URI of the MapStore application, with the path <code>/rest/geostore/openid/oidc/callback</code>.</li>
+<li><code>oidcOAuth2Config.internalRedirectUri</code>: the internal redirect URI. This is the URI that the MapStore will redirect to after the login. It must be the effective URI of the MapStore application.</li>
+<li><code>oidcOAuth2Config.principalKey</code>: (<em>optional</em>) the user name attribute. This is the attribute that will be used as user name. The default is <code>email</code>.</li>
+<li><code>oidcOAuth2Config.rolesClaim</code>: (<em>optional</em>) the role claims. If a claim contains roles, you can map them to MapStore roles. The roles can be only <code>ADMIN</code> or <code>USER</code>. If the claim is not present, the default role will be <code>USER</code>.</li>
+<li><code>oidcOAuth2Config.groupsClaim</code>: (<em>optional</em>) the group claims. If a claim contains groups, you can map them to MapStore groups. If the claim is not present, no group will be assigned (except the default <code>everyone</code> group).</li>
+<li><code>oidcOAuth2Config.globalLogoutEnabled</code>: (<em>optional</em>): if true (and the server supports it) invokes global logout on MapStore logout</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>rolesClaim</code> and <code>groupsClaim</code> are optional. If you don't need to map roles or groups, you can omit them. At the moment, there is no mapping for roles and groups for the generic OIDC provider. If you need to map roles and groups, you can use the <code>keycloak</code> provider.</p>
+</div>
+<h4 id="configure-the-mapstore-front-end">Configure the MapStore front-end</h4>
+<ul>
+<li>Add an entry for <code>oidc</code> in <code>authenticationProviders</code> inside <code>localConfig.json</code> file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;authenticationProviders&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openID&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oidc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My custom identity provider&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geostore&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>You can customize the <code>title</code> to be displayed in the login form, add an <code>imageURL</code> or use only one <code>authenticationProviders</code>, removing the <code>geostore</code> entry, if you want to use only the OpenID provider. In this case the user will be redirected directly to the OpenID provider without showing the login form.</p>
+<h4 id="example-with-microsoft-azure">Example with Microsoft Azure</h4>
+<p>Microsoft Azure provides OpenID Connect support. This is an example of how to configure MapStore to use Microsoft Azure as an OpenID provider. The same steps can be applied to other OpenID providers. Please refer to the specific documentation of the OpenID provider you are using. <a href="https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app">Here</a> the one for Microsoft Azure.</p>
+<p>Here a quick summary of the steps to configure Microsoft Azure as an OpenID provider and get the information needed to configure MapStore:</p>
+<ol>
+<li>Create a new application <img alt="Create azure application" src="../img/azure-1.jpg" /></li>
+<li>Set the proper valid redirect URLs <img alt="set redirect URL" src="../img/azure-2.jpg" /> to: <code>https://&lt;your-domain&gt;/mapstore/rest/geostore/openid/oidc/callback</code></li>
+<li>Create and copy the client secret <img alt="Create and copy client secret" src="../img/azure-3.jpg" /></li>
+<li>Add optional claims if needed <img alt="Add optional claims" src="../img/azure-4.jpg" /></li>
+<li>Copy endpoints and data to configure MapStore <img alt="Copy endpoints" src="../img/azure-5.jpg" /></li>
+</ol>
+<p>These steps are based on the <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app">Microsoft Azure documentation</a>.
+Please refer the official documentation for any detail or additional configuration.</p>
+<p>Here below are also some other sample configurations for MapStore:</p>
+<p><code>mapstore-ovr.properties</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># enables the OpenID Connect filter</span>
+<span class="na">oidcOAuth2Config.enabled</span><span class="o">=</span><span class="s">true</span>
+
+<span class="c1"># note: this is the client id you have created in Keycloak</span>
+<span class="na">oidcOAuth2Config.clientId</span><span class="o">=</span><span class="s">&lt;CLIENT_ID&gt;</span>
+<span class="na">oidcOAuth2Config.clientSecret</span><span class="o">=</span><span class="s">&lt;CLIENT_SECRET&gt;</span>
+
+<span class="c1"># DISCOVERY_URL something like https://login.microsoftonline.com/abc-dfe-ghi-123-345-567-789/v2.0/.well-known/openid-configuration</span>
+<span class="na">oidcOAuth2Config.discoveryUrl</span><span class="o">=</span><span class="s">&lt;DISCOVERY_URL&gt;</span>
+<span class="na">oidcOAuth2Config.sendClientSecret</span><span class="o">=</span><span class="s">true</span>
+<span class="c1"># create the user if not present</span>
+<span class="na">oidcOAuth2Config.autoCreateUser</span><span class="o">=</span><span class="s">true</span>
+<span class="c1"># Here you have to set your redirect URI (here is configured for localhost)</span>
+<span class="na">oidcOAuth2Config.redirectUri</span><span class="o">=</span><span class="s">http://localhost:8080/mapstore/rest/geostore/openid/oidc/callback</span>
+<span class="c1"># Internal redirect URI (you can set it to relative path like this `../../..` to make this config work across domain)</span>
+<span class="na">oidcOAuth2Config.internalRedirectUri</span><span class="o">=</span><span class="s">http://localhost:8080/mapstore</span>
+</code></pre></div>
+<p><code>localConfig.json.patch</code> ( <em>with a custom title and an image with the Microsoft logo</em> to show in the login form)</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;authenticationProviders&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openID&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oidc&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;imageURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgdmlld0JveD0iMCAwIDI1IDI1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGl0ZW1wcm9wPSJsb2dvIiBpdGVtc2NvcGU9Iml0ZW1zY29wZSI+CgkJCTxwYXRoIGQ9Ik0xMS41MjE2IDAuNUgwVjExLjkwNjdIMTEuNTIxNlYwLjVaIiBmaWxsPSIjZjI1MDIyIj48L3BhdGg+CgkJCTxwYXRoIGQ9Ik0yNC4yNDE4IDAuNUgxMi43MjAyVjExLjkwNjdIMjQuMjQxOFYwLjVaIiBmaWxsPSIjN2ZiYTAwIj48L3BhdGg+CgkJCTxwYXRoIGQ9Ik0xMS41MjE2IDEzLjA5MzNIMFYyNC41SDExLjUyMTZWMTMuMDkzM1oiIGZpbGw9IiMwMGE0ZWYiPjwvcGF0aD4KCQkJPHBhdGggZD0iTTI0LjI0MTggMTMuMDkzM0gxMi43MjAyVjI0LjVIMjQuMjQxOFYxMy4wOTMzWiIgZmlsbD0iI2ZmYjkwMCI+PC9wYXRoPgoJCTwvc3ZnPgo=&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geostore&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="google">Google</h3>
+<p>The Google OpenID Connect provider allows to use Google as an authentication provider. This is useful when you want to use Google as an authentication provider for your application.</p>
+<h4 id="create-oauth-20-credentials-on-google-console">Create Oauth 2.0 credentials on Google Console</h4>
+<p>In order to setup the openID connection you have to setup a project in Google API Console to obtain Oauth 2.0 credentials and configure them. Here a quick summary of the steps to configure Google as an OpenID provider. For more details, please refer to the <a href="https://developers.google.com/identity/openid-connect/openid-connect">Google documentation</a>.</p>
+<ul>
+<li>Open the Google developer console and, from credentials section, create a new credential of type <strong>Oauth client ID</strong></li>
+</ul>
+<p><img src="../img/google-create-credentials.jpg" class="ms-docimage"  style="max-width:500px;"/></p>
+<ul>
+<li>Set the <strong>Application Type</strong> to <strong>Web Application</strong>, name it as you prefer and configure the root of the application as an authorized redirect URI. Then click on <strong>Create</strong></li>
+</ul>
+<p><img src="../img/google-create-oauth2.jpg" class="ms-docimage"  style="max-width:500px;"/></p>
+<ul>
+<li>After creation you will obtain <strong>ClientID</strong> and <strong>Client Secret</strong> to use to configure MapStore.</li>
+</ul>
+<p>Please follow the <a href="https://developers.google.com/identity/protocols/oauth2/openid-connect">Google documentation</a> for any detail or additional configuration.</p>
+<h4 id="configure-mapstore-back-end-for-google-openid">Configure MapStore back-end for Google OpenID</h4>
+<p>After the setup, you will have to:</p>
+<ul>
+<li>create/edit the <code>mapstore-ovr.properties</code> file (in data-dir or class path) to configure the Google OpenID integration by inserting in particular the <code>clientId</code> and the <code>clientSecret</code> obtained from Google Console. You have also to set the <code>autoCreateUser</code> to <code>true</code> to create the user if not present in the MapStore database:</li>
+</ul>
+<p>Here an example of the configuration, documented inline:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># enables the google OpenID Connect filter</span>
+<span class="na">googleOAuth2Config.enabled</span><span class="o">=</span><span class="s">true</span>
+
+<span class="c1">#clientId and clientSecret</span>
+<span class="na">googleOAuth2Config.clientId</span><span class="o">=</span><span class="s">&lt;the_client_id_from_google_dev_console&gt;</span>
+<span class="na">googleOAuth2Config.clientSecret</span><span class="o">=</span><span class="s">&lt;the_client_secret_from_google_dev_console&gt;</span>
+
+<span class="c1"># create the user if not present</span>
+<span class="na">googleOAuth2Config.autoCreateUser</span><span class="o">=</span><span class="s">true</span>
+
+<span class="c1"># Redirect URL (needs to be configured in the Google Console too)</span>
+<span class="na">googleOAuth2Config.redirectUri</span><span class="o">=</span><span class="s">https://&lt;your-appliction-domain&gt;/mapstore/rest/geostore/openid/google/callback</span>
+<span class="c1"># Internal redirect URI (you can set it to relative path like this `../../..` to make this config work across domain)</span>
+<span class="na">googleOAuth2Config.internalRedirectUri</span><span class="o">=</span><span class="s">https://&lt;your-appliction-domain&gt;/mapstore/</span>
+
+<span class="c1">## discoveryUrl: contains all the information for the specific service.</span>
+<span class="na">googleOAuth2Config.discoveryUrl</span><span class="o">=</span><span class="s">https://accounts.google.com/.well-known/openid-configuration</span>
+</code></pre></div>
+<h4 id="configure-mapstore-front-end-for-google-openid">Configure MapStore front-end for Google OpenID</h4>
+<ul>
+<li>Add an entry for <code>google</code> in <code>authenticationProviders</code> inside <code>localConfig.json</code> file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;authenticationProviders&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openID&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geostore&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="keycloak">Keycloak</h3>
+<p><a href="https://www.keycloak.org/">Keycloak</a> is an open source identity and access management application widely used. MapStore has the ability to integrate with keycloak:</p>
+<ul>
+<li>Using the standard OpenID Connect (OIDC) protocol to login/logout in MapStore</li>
+<li>Supporting Single Sign On (SSO) with other applications.</li>
+<li>Mapping keycloak roles to MapStore groups, as well as for ldap.</li>
+</ul>
+<p>In this section you can see how to configure keycloak as a standard OpenID provider. For other advanced functionalities, you can see the <a href="../keycloak/#keycloak-integrations">dedicated section of the documentation</a></p>
+<h4 id="configure-keycloak-client">Configure keycloak Client</h4>
+<p>Create a new Client on keycloak. In this guide we will name it <code>mapstore-server</code> (because if you need to configure SSO, we may need another key to call <code>mapstore-client</code>)</p>
+<p><img src="../img/kc-create-client.jpg" class="ms-docimage"  style="max-width:500px;"/>
+<img src="../img/kc-create-mapstore-server.jpg" class="ms-docimage"  style="max-width:500px;"/></p>
+<ul>
+<li>Configure it as <code>Confidential</code> setting the Redirect-URL with your MapStore base root, with a <code>*</code> at the end (e.g. <code>https://my.mapstore.site.com/mapstore/*</code>)</li>
+</ul>
+<p><img src="../img/kc-configure-mapstore-server.jpg" class="ms-docimage"  style="max-width:500px;"/></p>
+<ul>
+<li>Click on Save button, then open the <em>Installation</em> tab, select the <code>Keycloak OIDC JSON</code> format, and copy the JSON displayed below.</li>
+</ul>
+<p><img src="../img/kc-copy-config-server.jpg" class="ms-docimage"  style="max-width:500px;"/></p>
+<h3 id="configure-mapstore-back-end-for-keycloak-openid">Configure MapStore back-end for Keycloak OpenID</h3>
+<p>Create/edit <code>mapstore-ovr.properties</code> file (in data-dir or class path) to configure the keycloak provider this way:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># enables the keycloak OpenID Connect filter</span>
+<span class="na">keycloakOAuth2Config.enabled</span><span class="o">=</span><span class="s">true</span>
+
+<span class="c1"># Configuration</span>
+<span class="na">keycloakOAuth2Config.jsonConfig</span><span class="o">=</span><span class="s">&lt;copy-here-the-json-config-from-keycloak-removing-all-the-spaces&gt;</span>
+
+
+<span class="c1"># Redirect URLs</span>
+<span class="c1"># - Redirect URL: need to be configured to point to your application at the path &lt;base-app-url&gt;/rest/geostore/openid/keycloak/callback</span>
+<span class="c1"># e.g. `https://my.mapstore.site.com/mapstore/mapstore/rest/geostore/openid/keycloak/callback`</span>
+<span class="na">keycloakOAuth2Config.redirectUri</span><span class="o">=</span><span class="s">https://my.mapstore.site.com/mapstore/rest/geostore/openid/keycloak/callback</span>
+<span class="c1"># - Internal redirect URL when logged in (typically the home page of MapStore, can be relative)</span>
+<span class="na">keycloakOAuth2Config.internalRedirectUri</span><span class="o">=</span><span class="s">https://my.mapstore.site.com/mapstore/</span>
+
+<span class="c1"># Create user (if you are using local database, this should be set to true)</span>
+<span class="na">keycloakOAuth2Config.autoCreateUser</span><span class="o">=</span><span class="s">true</span>
+
+<span class="c1"># Comma separated list of &lt;keycloak-role&gt;:&lt;geostore-role&gt;</span>
+<span class="na">keycloakOAuth2Config.roleMappings</span><span class="o">=</span><span class="s">admin:ADMIN,user:USER</span>
+
+<span class="c1"># Comma separated list of &lt;keycloak-role&gt;:&lt;geostore-group&gt;</span>
+<span class="na">keycloakOAuth2Config.groupMappings</span><span class="o">=</span><span class="s">MY_KEYCLOAK_ROLE:MY_MAPSTORE_GROUP,MY_KEYCLOAK_ROLE2:MY_MAPSTORE_GROUP2</span>
+
+<span class="c1"># Default role, when no mapping has matched</span>
+<span class="na">keycloakOAuth2Config.authenticatedDefaultRole</span><span class="o">=</span><span class="s">USER</span>
+</code></pre></div>
+<ul>
+<li><code>keycloakOAuth2Config.jsonConfig</code>: insert the JSON copied, removing all the spaces</li>
+<li><code>keycloakOAuth2Config.redirectUri</code>: need to be configured to point to your application at the path <code>&lt;base-app-url&gt;/rest/geostore/openid/keycloak/callback</code>, e.g. <code>https://my.mapstore.site.com/mapstore/rest/geostore/openid/keycloak/callback</code></li>
+<li><code>keycloakOAuth2Config.internalRedirectUri</code> can be set to your application root, e.g. <code>https://my.mapstore.site.com/mapstore/</code></li>
+<li><code>keycloakOAuth2Config.autoCreateUser</code>: true if you want MapStore to insert a Keycloak authenticated user on the DB. UserGroups will be inserted as well and kept in synch with the roles defined for the user in Keycloak. The option <strong>must be set to false if MapStore is using a read-only external service for users and groups</strong> (i.e. Keycloak or LDAP).</li>
+<li><code>keycloakOAuth2Config.forceConfiguredRedirectURI</code>: optional, if <code>true</code>, forces the redirect URI for callback to be equal to teh redirect URI. This is useful if you have problems logging in behind a proxy, or in dev mode.</li>
+<li><code>keycloakOAuth2Config.roleMappings</code>: comma separated list of mappings with the following format <code>keycloak_admin_role:ADMIN,keycloak_user_role:USER</code>. These mappings will be used to map Keycloak roles to MapStore roles. Allowed values <code>USER</code> or <code>ADMIN</code>.</li>
+<li><code>keycloakOAuth2Config.authenticatedDefaultRole</code>: where the role has not been assigned by the mappings above, the role here will be used. Allowed values <code>USER</code> or <code>ADMIN</code>.</li>
+<li><code>keycloakOAuth2Config.groupMappings</code>: comma separated list of mappings with the following format <code>keycloak_role_name:mapstore_group_name,keycloak_role_name2:mapstore_group_name2</code>. These mappings will be used to map Keycloak roles to MapStore groups.</li>
+<li><code>keycloakOAuth2Config.dropUnmapped</code>: when set to false, MapStore will drop Keycloak roles that are not matched by any mapping role and group mapping. When set to true all the unmatched Keycloak roles will be added as MapStore UserGroups.</li>
+</ul>
+<h4 id="configure-mapstore-front-end-for-keycloak-openid">Configure MapStore front-end for Keycloak OpenID</h4>
+<ul>
+<li>Add an entry for <code>keycloak</code> in <code>authenticationProviders</code> inside <code>localConfig.json</code> file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;authenticationProviders&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openID&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;keycloak&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geostore&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+    
+      
+      <!-- customized wrapping nav in this div to apply the color -->
+      <div class="md-footer-nav">
+      <nav
+        class="md-footer__inner md-grid"
+        aria-label="Footer"
+        
+      >
+
+        <!-- Link to previous page -->
+        
+          
+          <a
+            href="../ldap/"
+            class="md-footer__link md-footer__link--prev"
+            aria-label="Previous: LDAP"
+            rel="prev"
+          >
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                LDAP
+              </div>
+            </div>
+          </a>
+        
+
+        <!-- Link to next page -->
+        
+          
+          <a
+            href="../keycloak/"
+            class="md-footer__link md-footer__link--next"
+            aria-label="Next: Keycloak"
+            rel="next"
+          >
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Keycloak
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+        </div>
+    
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <b><a href="https://mapstore.geosolutionsgroup.com" target="_blank">MapStore&copy;</a></b> is Free and Open Source software and is licensed under the Simplified BSD License.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+    <!-- Customization -->
+    <div class="custom-footer-section md-grid">
+        <div>
+            <small>If you find something in this documentation that requires further clarifications, it is not correct or does not match your experience with MapStore, please report a <b><a href="" target="_blank">documentation issue</a></b> on GitHub.</small>
+            <br/>
+            <small>We also welcome any contributions, take a look at our <b><a href="" target="_blank">issues</a></b> on GitHub.</small>
+        </div>
+        <div>
+            Play with the <b><a href="https://mapstore.geosolutionsgroup.com" target="_blank">MapStore online Demo</a></b>.
+        </div>
+        <div className="md-footer-brand">
+            <a href="http://www.geo-solutions.it" target="_blank">
+                   <img class="md-footer-brand-img" src="../../../../img/geosolutions-brand.png">
+            </a>
+        </div>
+        <div>
+            <small>GeoSolutions | sales@geosolutionsgroup.com </small>
+        </div>
+        </div>
+      <!-- End of customization-->
+      <!-- Social links -->
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/geosolutions-it" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/geosolutions_it" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.8h39.1L151.1 88h-42l255.3 333.8z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://it.linkedin.com/company/geosolutions-s-a-s-" target="_blank" rel="noopener" title="it.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.indexes", "navigation.footer", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.78eede0e.min.js"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.6.0/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

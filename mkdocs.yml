@@ -1,0 +1,202 @@
+site_name: Tiems
+site_url: 'https://tiems.co.za'
+copyright: <b><a href="https://mapstore.geosolutionsgroup.com" target="_blank">MapStore&copy;</a></b> is Free and Open Source software and is licensed under the Simplified BSD License.
+use_directory_urls: true
+theme:
+  name: 'material'
+  highlightjs: true
+  icon:
+    logo: 'img/mapstore2-logo.png'
+    repo: 'fontawesome/brands/github-alt'
+  favicon: 'img/favicon.ico'
+  custom_dir: 'docs/theme'
+  language: 'en'
+  features:
+    - header.autohide
+    - navigation.instant
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.path
+    - navigation.indexes
+    - navigation.footer
+    - content.code.copy
+  logo: 'img/mapstore2-logo.png'
+  company_url: 'https://tiems.co.za'
+  company_logo: 'img/geosolutions-brand.png'
+  company_contacts: 'GeoSolutions | sales@geosolutionsgroup.com '
+  palette:
+    primary: 'teal'
+    accent: 'teal'
+# extra:
+#   repo_icon: 'github'
+#   social:
+#     - type: 'github'
+#       icon: 'fontawesome/brands/github'
+#       link: 'https://github.com/geosolutions-it'
+#     - type: 'twitter'
+#       icon: 'fontawesome/brands/x-twitter'
+#       link: 'https://twitter.com/geosolutions_it'
+#     - type: 'linkedin'
+#       icon: 'fontawesome/brands/linkedin'
+#       link: 'https://it.linkedin.com/company/geosolutions-s-a-s-'
+extra_javascript:
+  - 'https://code.jquery.com/jquery-3.3.1.min.js'
+  - 'https://unpkg.com/mermaid@10.6.0/dist/mermaid.min.js'
+extra_css:
+  - 'theme/css/extra.css'
+# repo_name: 'geosolutions-it/MapStore2'
+# repo_url: 'https://github.com/geosolutions-it/MapStore2/'
+edit_uri: ''
+docs_dir: 'docs'
+markdown_extensions:
+  - admonition
+  - markdown.extensions.attr_list
+  - codehilite:
+      linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+nav:
+  - Home:
+      - Home: 'index.md' # To include in pdf
+      - Quick Start: 'quick-start.md'
+  - Map Portal:
+      - Home Page Overview: 'tiems-map-portal/home-page.md'
+      - Managing Users and Groups:
+          - Overview: 'tiems-map-portal/managing-users-and-groups.md'
+          - Managing Users: 'tiems-map-portal/managing-users.md'
+          - Managing Groups: 'tiems-map-portal/managing-groups.md'
+      - Managing Contexts:
+          - Overview: 'tiems-map-portal/managing-contexts.md'
+          - Application Context: 'tiems-map-portal/application-context.md'
+          - Extension Library: 'tiems-map-portal/extension-library.md'
+          - Map Catalog: 'tiems-map-portal/map-catalog.md'
+          - Map Templates: 'tiems-map-portal/map-templates.md'
+      - Resources Properties: 'tiems-map-portal/resources-properties.md'
+      - Sharing Resources: 'tiems-map-portal/share.md'
+      - Exploring Maps:
+          - Overview: 'tiems-map-portal/exploring-maps.md'
+          - Table of Contents: 'tiems-map-portal/toc.md'
+          - Managing Layer Settings: 'tiems-map-portal/layer-settings.md'
+          - Filtering Layers: 'tiems-map-portal/filtering-layers.md'
+          - Attribute Table: 'tiems-map-portal/attributes-table.md'
+          - Widgets: 'tiems-map-portal/widgets.md'
+          - Export Layer Data: 'tiems-map-portal/export-data.md'
+          - MapStore Toolbars: 'tiems-map-portal/mapstore-toolbars.md'
+          - Printing a Map: 'tiems-map-portal/print.md'
+          - Importing and Exporting Files: 'tiems-map-portal/import.md'
+          - Catalog Services: 'tiems-map-portal/catalog.md'
+          - Performing Measurments: 'tiems-map-portal/measure.md'
+          - Annotations: 'tiems-map-portal/annotations.md'
+          - Map Views: 'tiems-map-portal/map-views.md'
+          - Street View: 'tiems-map-portal/street-view.md'
+          - Longitudinal Profile: 'tiems-map-portal/longitudinal-profile.md'
+          - GeoProcessing Tool: 'tiems-map-portal/geoprocessing-tool.md'
+          - Navigation Toolbar: 'tiems-map-portal/navigation-toolbar.md'
+          - Background Selector: 'tiems-map-portal/background.md'
+          - Timeline: 'tiems-map-portal/timeline.md'
+          - Footer: 'tiems-map-portal/footer.md'
+      - Exploring Dashboards:
+          - Overview: 'tiems-map-portal/exploring-dashboards.md'
+          - Adding widgets: 'tiems-map-portal/adding-widgets.md'
+          - Connecting widgets: 'tiems-map-portal/connecting-widgets.md'
+      - Exploring Stories:
+          - Overview: 'tiems-map-portal/exploring-stories.md'
+          - Story Settings: 'tiems-map-portal/story-setting.md'
+          - Title Section: 'tiems-map-portal/title-section.md'
+          - Banner Section: 'tiems-map-portal/banner-section.md'
+          - Paragraph Section: 'tiems-map-portal/paragraph-section.md'
+          - Immersive Section: 'tiems-map-portal/immersive-section.md'
+          - GeoCarousel Section: 'tiems-map-portal/geocarousel-section.md'
+          - Media Section: 'tiems-map-portal/media-section.md'
+          - Web Page section: 'tiems-map-portal/web-section.md'
+          - Text Editor Toolbar: 'tiems-map-portal/text-editor-toolbar.md'
+          - Image Toolbar: 'tiems-map-portal/content-image-toolbar.md'
+          - Video Toolbar: 'tiems-map-portal/content-video-toolbar.md'
+          - Map Toolbar: 'tiems-map-portal/content-map-toolbar.md'
+          - Web Page Toolbar: 'tiems-map-portal/content-web-toolbar.md'
+          - Media Editor: 'tiems-map-portal/media-editor-window.md'
+          - Configue the map: 'tiems-map-portal/configure-map.md'
+  - File Hub:
+      - Requirements: 'tiems-file-hub/requirements.md'
+      - Quick Setup and Run: 'tiems-file-hub/index.md'
+      - Main Scripts: 'tiems-file-hub/main-scripts.md'
+      - Infrastructure: 'tiems-file-hub/infrastructure-and-general-architecture.md'
+      - Developing with MapStore:
+          - Introduction: 'tiems-file-hub/developing-with-mapstore-2-intro.md'
+          - Folders Structure: 'tiems-file-hub/project-structure.md'
+          - Developing and Debugging: 'tiems-file-hub/developing.md'
+          - Building and Deploying: 'tiems-file-hub/building-and-deploying.md'
+          - Front End Technologies: 'tiems-file-hub/reactjs-and-redux-introduction.md'
+          - Plugins architecture: 'tiems-file-hub/plugins-architecture.md'
+          - Internationalization: 'tiems-file-hub/internationalization.md'
+          - Custom dependencies: 'tiems-file-hub/custom-dependencies.md'
+          - Styling and theming: 'tiems-file-hub/customize-theme.md'
+          - Working with Extensions: 'tiems-file-hub/extensions.md'
+          - Printing Module: 'tiems-file-hub/printing-module.md'
+          - How to use CDN: 'tiems-file-hub/how-to-use-a-cdn.md'
+          - FAQ: 'tiems-file-hub/dev-faq.md'
+      - Guidelines:
+          - Code Conventions: 'tiems-file-hub/code-conventions.md'
+          - Documentation: 'tiems-file-hub/documentation-guidelines.md'
+          - Migration: 'tiems-file-hub/mapstore-migration-guide.md'
+          - Release: 'tiems-file-hub/release.md'
+      - How to:
+          - Dev How To: 'tiems-file-hub/dev-how-to.md'
+          - Writing Plugins: 'tiems-file-hub/plugins-howto.md'
+          - Writing Epics: 'tiems-file-hub/writing-epics.md'
+          - Writing Actions and Reducers: 'tiems-file-hub/writing-actions-reducers.md'
+      - Configuration:
+          - Configuration Files: 'tiems-file-hub/configuration-files.md'
+          - Application Configuration: 'tiems-file-hub/local-config.md'
+          - Configuring plugins: 'tiems-file-hub/plugins-documentation.md'
+          - Map Configuration: 'tiems-file-hub/maps-configuration.md'
+          - Externalize Configuration: 'tiems-file-hub/externalized-configuration.md'
+          - Configuration of Application Context Manager: 'tiems-file-hub/context-editor-config.md'
+          - Filters: 'tiems-file-hub/LayerFilter.md'
+          - Styles: 'tiems-file-hub/vector-style.md'
+      - Database Setup: 'tiems-file-hub/database-setup.md'
+      - Integrations:
+          - Users:
+              - LDAP: 'tiems-file-hub/integrations/users/ldap.md'
+              - OpenID Connect: 'tiems-file-hub/integrations/users/openId.md'
+              - Keycloak: 'tiems-file-hub/integrations/users/keycloak.md'
+              - Keycloak-SSO: 'tiems-file-hub/integrations/users/keycloak-sso-impl.md'
+          - General:
+              - GeoServer: 'tiems-file-hub/integrations/geoserver.md'
+              - Authentication: 'tiems-file-hub/integrations/auth.md'
+              - Infrastructure: 'tiems-file-hub/integrations/infrastructure-setups.md'
+      - Projects:
+          - MapStore Projects: 'tiems-file-hub/mapstore-projects.md'
+          - Project Creation Script: 'tiems-file-hub/project-creation-script.md'
+          - Advanced Project Customization: 'tiems-file-hub/advanced-project-customization.md'
+      - Communicating with MapStore:
+          - API usage: 'tiems-file-hub/API-usage.md'
+          - MapViewer query paramaters: 'tiems-file-hub/map-query-parameters.md'
+  - Civil Collector App:
+      - Home: 'qfield-civil-collector/home-page.md'
+  - Maintenance App:
+      - Home: 'qfield-maintenance/home-page.md'
+  - Building Control App:
+      - Home: 'qfield-building-control/home-page.md'
+
+plugins:
+  - search
+  - with-pdf:
+      author: GeoSolutionsGroup
+      copyright: 'MapStore©'
+      #
+      #cover: false
+      #back_cover: true
+      cover_logo: 'img/mapstore2-logo.png'
+      cover_title: MapStore Documentation
+      cover_subtitle: User Guide and Developer Guide
+      toc_level: 3
+      output_path: pdf/mapstore_documentation.pdf
+      enabled_if_env: ENABLE_PDF_EXPORT
+      debug_html: true
+      show_anchors: true
+      verbose: true

@@ -1,0 +1,4121 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mapstore.geosolutionsgroup.com/developer-guide/local-config/">
+      
+      
+        <link rel="prev" href="../configuration-files/">
+      
+      
+        <link rel="next" href="../plugins-documentation/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.6">
+    
+    
+      
+        <title>Application Configuration - MapStore</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0e669242.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../theme/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#application-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapStore" class="md-header__button md-logo" aria-label="MapStore" data-md-component="logo">
+      
+  <img src="../../img/mapstore2-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapStore
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Application Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/geosolutions-it/MapStore2/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    geosolutions-it/MapStore2
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Navigation tabs -->
+<nav
+  class="md-tabs"
+  aria-label="Tabs"
+  data-md-component="tabs"
+>
+  <div class="md-grid">
+    <div style="display: flex; justify-content: space-between">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/home-page/" class="md-tabs__link">
+          
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../requirements/" class="md-tabs__link">
+          
+  
+    
+  
+  Developer Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+    <ul class="md-tabs__list">
+       <li class="md-tabs__item pull-right">
+          <a href="https://github.com/geosolutions-it/MapStore2/releases"
+            class="md-tabs__link" target="_blank">Downloads</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/plugins"
+            class="md-tabs__link" target="_blank">Plugins</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/jsapi"
+            class="md-tabs__link" target="_blank">JavaScript API</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/framework"
+            class="md-tabs__link" target="_blank">Framework API</a>
+      </li>
+      <li class="md-tabs__item pull-right export-pdf-li" style="display:flex;" title="Export PDF"></li>
+    </ul>
+    </div>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapStore" class="md-nav__button md-logo" aria-label="MapStore" data-md-component="logo">
+      
+  <img src="../../img/mapstore2-logo.png" alt="logo">
+
+    </a>
+    MapStore
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/geosolutions-it/MapStore2/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    geosolutions-it/MapStore2
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_1">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/home-page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Page Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Managing Users and Groups
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Managing Users and Groups
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/managing-users-and-groups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/managing-users/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Users
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/managing-groups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Groups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Managing Contexts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Managing Contexts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/managing-contexts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/application-context/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Application Context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/extension-library/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extension Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/map-catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Catalog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/map-templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/resources-properties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resources Properties
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/share/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Maps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Maps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/exploring-maps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/toc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Table of Contents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/layer-settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Layer Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/filtering-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filtering Layers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/attributes-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attribute Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/export-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Export Layer Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/mapstore-toolbars/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MapStore Toolbars
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/print/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Printing a Map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/import/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Importing and Exporting Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Catalog Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performing Measurments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/map-views/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Views
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/street-view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Street View
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/longitudinal-profile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Longitudinal Profile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/geoprocessing-tool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoProcessing Tool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/navigation-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/background/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Background Selector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Timeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/footer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Footer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Dashboards
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Dashboards
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/exploring-dashboards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/adding-widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/connecting-widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connecting widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Stories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Stories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/exploring-stories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/story-setting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Story Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/title-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Title Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/banner-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Banner Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/paragraph-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Paragraph Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/immersive-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Immersive Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/geocarousel-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoCarousel Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/media-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Media Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/web-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Page section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/text-editor-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text Editor Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/content-image-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/content-video-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Video Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/content-map-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/content-web-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Page Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/media-editor-window/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Media Editor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/configure-map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configue the map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Developer Guide
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../main-scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Scripts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infrastructure-and-general-architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developing with MapStore
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Developing with MapStore
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developing-with-mapstore-2-intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project-structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folders Structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developing and Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../building-and-deploying/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and Deploying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reactjs-and-redux-introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Front End Technologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins-architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plugins architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../internationalization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Internationalization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customize-theme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Styling and theming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working with Extensions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../printing-module/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Printing Module
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-to-use-a-cdn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to use CDN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-conventions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code Conventions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation-guidelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapstore-migration-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How to
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            How to
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-how-to/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dev How To
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins-howto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../writing-epics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Epics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../writing-actions-reducers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Actions and Reducers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" checked>
+        
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Application Configuration
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Application Configuration
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explanation-of-some-config-properties" class="md-nav__link">
+    Explanation of some config properties
+  </a>
+  
+    <nav class="md-nav" aria-label="Explanation of some config properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialstate-configuration" class="md-nav__link">
+    initialState configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="initialState configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#catalog-tool-configuration" class="md-nav__link">
+    Catalog Tool configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projectiondefs-configuration" class="md-nav__link">
+    projectionDefs configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crs-selector-configuration" class="md-nav__link">
+    CRS Selector configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-plugin-configuration" class="md-nav__link">
+    Search plugin configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins-documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maps-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../externalized-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Externalize Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context-editor-config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration of Application Context Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LayerFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector-style/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Styles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Integrations
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10_1" >
+        
+          <label class="md-nav__link" for="__nav_3_10_1" id="__nav_3_10_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Users
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_10_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10_1">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/users/ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LDAP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/users/openId/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenID Connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/users/keycloak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/users/keycloak-sso-impl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak-SSO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10_2" >
+        
+          <label class="md-nav__link" for="__nav_3_10_2" id="__nav_3_10_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_10_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10_2">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/geoserver/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoServer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/infrastructure-setups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapstore-projects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MapStore Projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project-creation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Creation Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-project-customization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Project Customization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Communicating with MapStore
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            Communicating with MapStore
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API-usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map-query-parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MapViewer query paramaters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explanation-of-some-config-properties" class="md-nav__link">
+    Explanation of some config properties
+  </a>
+  
+    <nav class="md-nav" aria-label="Explanation of some config properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialstate-configuration" class="md-nav__link">
+    initialState configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="initialState configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#catalog-tool-configuration" class="md-nav__link">
+    Catalog Tool configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projectiondefs-configuration" class="md-nav__link">
+    projectionDefs configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crs-selector-configuration" class="md-nav__link">
+    CRS Selector configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-plugin-configuration" class="md-nav__link">
+    Search plugin configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="application-configuration">Application configuration</h1>
+<p>The application will load by default it will load the <code>localConfig.json</code> which is now stored in the configs\ folder</p>
+<p>You can load a custom configuration by passing the <code>localConfig</code> argument in query string:</p>
+<div class="highlight"><pre><span></span><code>localhost:8081/?localConfig=myConfig#/viewer/openlayers/0
+</code></pre></div>
+<p>The <strong>localConfig</strong> file contains the main information about URLs to load and plugins to load in the various modes.</p>
+<p>This is the main structure:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="c1">// URL of geoStore</span>
+<span class="w">  </span><span class="s2">&quot;geoStoreUrl&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;rest/geostore/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// printURL the url of the print service, if any</span>
+<span class="w">  </span><span class="s2">&quot;printUrl&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/geoserver-test/pdf/info.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// a string or an object for the proxy URL.</span>
+<span class="w">  </span><span class="s2">&quot;proxyUrl&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// When autoDetectCORS is not present or false, the application will use the proxy for all the requests except the ones in the useCORS array.</span>
+<span class="w">    </span><span class="c1">// if autoDetectCORS=true, the application will try the CORS request first, than will try to use the proxy if the request fails.</span>
+<span class="w">    </span><span class="c1">// note: this parameter is actually not supported by Cesium, that will always use the proxy or the CORS request when in useCORS array.</span>
+<span class="w">    </span><span class="s2">&quot;autoDetectCORS&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// if it is an object, the url entry holds the url to the proxy</span>
+<span class="w">    </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/MapStore2/proxy/?url=&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// useCORS array contains a list of services that support CORS and so do not need a proxy.</span>
+<span class="w">    </span><span class="c1">// if autoDetectCORS is true, this array will be ignored (except for Cesium)</span>
+<span class="w">    </span><span class="s2">&quot;useCORS&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;http://nominatim.openstreetmap.org&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;https://nominatim.openstreetmap.org&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// JSON file where uploaded extensions are configured</span>
+<span class="w">  </span><span class="s2">&quot;extensionsRegistry&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;extensions.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// URL of the folder from where extensions bundles and other assets are loaded</span>
+<span class="w">  </span><span class="s2">&quot;extensionsFolder&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// API keys for bing and mapquest services</span>
+<span class="w">  </span><span class="s2">&quot;bingApiKey&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// force dates to be in this specified format. use moment js format pattern</span>
+<span class="w">  </span><span class="s2">&quot;forceDateFormat&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;YYYY-MM-DD&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// force time to be in this specified format. use moment js format pattern</span>
+<span class="w">  </span><span class="s2">&quot;forceTimeFormat&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;hh:mm A&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;mapquestApiKey&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// list of actions types that are available to be launched dynamically from query param (#3817)</span>
+<span class="w">  </span><span class="s2">&quot;initialActionsWhiteList&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ZOOM_TO_EXTENT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ADD_LAYER&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">...],</span>
+<span class="w">  </span><span class="c1">// path to the translation files directory (if different from default)</span>
+<span class="w">  </span><span class="s2">&quot;translationsPath&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// if true, every ajax and mapping request will be authenticated with the configurations if match a rule (default: true)</span>
+<span class="w">  </span><span class="s2">&quot;useAuthenticationRules&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="c1">// the authentication rules to match</span>
+<span class="w">  </span><span class="s2">&quot;authenticationRules&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="c1">// every rule has a `urlPattern` regex to match</span>
+<span class="w">    </span><span class="s2">&quot;urlPattern&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.*geostore.*&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// and a authentication `method` to use (basic, authkey, browserWithCredentials, header)</span>
+<span class="w">    </span><span class="s2">&quot;method&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;basic&quot;</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;urlPattern&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;\\/geoserver.*&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;method&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;authkey&quot;</span>
+<span class="w">  </span><span class="p">}],</span>
+<span class="w">  </span><span class="c1">// flag for postponing mapstore 2 load time after theme</span>
+<span class="w">  </span><span class="s2">&quot;loadAfterTheme&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// if defined, WMS layer styles localization will be added</span>
+<span class="w">  </span><span class="s2">&quot;localizedLayerStyles&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// name of the ENV parameter variable that is needed for localization proposes</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mapstore_language&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// flag for abandon map edit confirm popup, by default is enabled</span>
+<span class="w">  </span><span class="s2">&quot;unsavedMapChangesDialog&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// optional flag to set default coordinate format (decimal, aeronautical)</span>
+<span class="w">  </span><span class="s2">&quot;defaultCoordinateFormat&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;aeronautical&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// optionals misc settings</span>
+<span class="w">  </span><span class="s2">&quot;miscSettings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Use POST requests for each WMS length URL highter than this value.</span>
+<span class="w">      </span><span class="s2">&quot;maxURLLength&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">5000</span><span class="p">,</span>
+<span class="w">      </span><span class="c1">// Custom path to home page</span>
+<span class="w">      </span><span class="s2">&quot;homePath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/home&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="c1">// If true it enables interactive legend for GeoServer WMS layers</span>
+<span class="w">      </span><span class="s2">&quot;experimentalInteractiveLegend&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// optional state initializer (it will override the one defined in appConfig.js)</span>
+<span class="w">  </span><span class="s2">&quot;initialState&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// default initial state for every mode (will override initialState imposed by plugins reducers)</span>
+<span class="w">      </span><span class="s2">&quot;defaultState&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="p">...</span>
+<span class="w">          </span><span class="c1">// if you want to customize the supported locales put here the languages you want and follow instruction linked below</span>
+<span class="w">          </span><span class="s2">&quot;locales&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;supportedLocales&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="s2">&quot;it&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;code&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;it-IT&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Italiano&quot;</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="s2">&quot;en&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;code&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;en-US&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;English&quot;</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="c1">// mobile override (defined properties will override default in mobile mode)</span>
+<span class="w">      </span><span class="s2">&quot;mobile&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="p">...</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// allows to apply map options configuration to all the Map plugins instances defined in the plugins configuration.</span>
+<span class="w">  </span><span class="c1">// The mapOptions in the plugin configuration have priority so they will overrides this global config</span>
+<span class="w">  </span><span class="s2">&quot;defaultMapOptions&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;openlayers&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;leaflet&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;cesium&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// allow to define the default visualization mode of the app and</span>
+<span class="w">  </span><span class="c1">// which 2D or 3D map library should be used based on the device</span>
+<span class="w">  </span><span class="c1">// the configuration below is the default one</span>
+<span class="w">  </span><span class="c1">// note: this configuration does not support expressions</span>
+<span class="w">  </span><span class="s2">&quot;mapType&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// the default visualization mode of the app, it could be &quot;2D&quot; or &quot;3D&quot;</span>
+<span class="w">    </span><span class="s2">&quot;defaultVisualizationMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2D&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// map library to use based on the visualization mode and device</span>
+<span class="w">    </span><span class="c1">// structure -&gt; { visualizationModes: { [visualizationMode]: { [deviceType]: mapLibrary } } }</span>
+<span class="w">    </span><span class="s2">&quot;visualizationModes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;2D&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;desktop&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;openlayers&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;mobile&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;leaflet&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;3D&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;desktop&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cesium&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;mobile&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cesium&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="s2">&quot;plugins&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// plugins to load for the mobile mode</span>
+<span class="w">      </span><span class="s2">&quot;mobile&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[...]</span>
+<span class="w">      </span><span class="c1">// plugins to load for the desktop mode</span>
+<span class="w">      </span><span class="s2">&quot;desktop&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[...]</span>
+<span class="w">      </span><span class="c1">// plugins to load for the embedded mode</span>
+<span class="w">      </span><span class="s2">&quot;embedded&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[...]</span>
+<span class="w">      </span><span class="c1">// plugins to load for the myMode mode</span>
+<span class="w">      </span><span class="s2">&quot;myMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[...]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If you are building your own app, you can choose to create your custom modes or force one of them by passing the <code>mode</code> parameter in the query string.</p>
+<p>For adding a new locale or configuring currently supported locales, go check <a href="../internationalization/#internationalization">this</a> out.</p>
+<p>For configuring plugins, see the <a href="../plugins-documentation/#configuring-plugins">Configuring Plugins Section</a> and the <a href="../plugins-architecture/#plugins-architecture">plugin reference page</a></p>
+<h2 id="explanation-of-some-config-properties">Explanation of some config properties</h2>
+<ul>
+<li><code>loadAfterTheme</code>: is a flag that allows to load mapstore.js after the theme which can be versioned or not(default.css). default is false</li>
+<li><code>initialState</code>: is an object that will initialize the state with some default values and this WILL OVERRIDE the initialState imposed by plugins &amp; reducers.</li>
+<li><code>projectionDefs</code>: is an array of objects that contain definitions for Coordinate Reference Systems</li>
+<li><code>useAuthenticationRules</code>: if this flag is set to true, the <code>authenticationRules</code> will be used to authenticate every ajax and mapping request. If the flag is set to false, the <code>authenticationRules</code> will be ignored.</li>
+<li><code>authenticationRules</code>: is an array of objects that contain rules to match for authentication. Each rule has a <code>urlPattern</code> regex to match and a <code>method</code> to use (<code>basic</code>, <code>authkey</code>, <code>header</code>, <code>browserWithCredentials</code>). If the URL of a request matches the <code>urlPattern</code> of a rule, the <code>method</code> will be used to authenticate the request. The <code>method</code> can be:</li>
+<li><code>basic</code> will use the basic authentication method getting the credentials from the user that logged in (adding the header <code>Authorization</code> <code>Basic &lt;base64(username:password)&gt;</code> to the request). <em><strong>Note</strong>: this method is not implemented for image tile requests (e.g. layers) but only for ajax requests.</em></li>
+<li><code>authkey</code> will use the authkey method getting the credentials from the user that logged in. The token of the current MapStore session will be used as the authkey value, so this works only with the geoserver integration.</li>
+<li><code>bearer</code> will use the header <code>Authorization</code> <code>Bearer &lt;token&gt;</code> getting the credentials from the user that logged in. The token of the current MapStore session will be used as the bearer value, so this works only with the geoserver integration.</li>
+<li><code>header</code> will use the header method getting the credentials from the user that logged in. You can add an <code>headers</code> object containing the static headers to this rule to specify witch headers to use. e.g.</li>
+<li><code>browserWithCredentials</code> will add the <code>withCredentials</code> parameter to ajax requests, so the browser will send the cookies and the authentication headers to the server. This method is useful when you have a proxy that needs to authenticate the user. <em><strong>Note</strong>: this method is not implemented for image tile requests (e.g. layers) but only for ajax requests.</em></li>
+</ul>
+<p><code>json
+    {
+        "urlPattern": ".*geostore.*",
+        "method": "header",
+        "headers": {
+            "X-Auth-Token": "mytoken"
+        }
+    }</code></p>
+<h3 id="initialstate-configuration">initialState configuration</h3>
+<p>It can contain:</p>
+<ol>
+<li>a defaultState valid for every mode</li>
+<li>a piece of state for each mode (mobile, desktop, embedded)</li>
+</ol>
+<h4 id="catalog-tool-configuration">Catalog Tool configuration</h4>
+<p>Inside defaultState you can set default catalog services adding the following key</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;catalog&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;newService&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wms&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;isNew&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;editable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;autoload&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;selectedService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo CSW Service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;services&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Demo CSW Service&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://demo.geo-solutions.it/geoserver/csw&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;csw&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A title for Demo CSW Service&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;autoload&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Demo WMS Service&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://demo.geo-solutions.it/geoserver/wms&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;layerOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;tileSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="nt">&quot;image/png8&quot;</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wms&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A title for Demo WMS Service&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;autoload&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Demo WMTS Service&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://demo.geo-solutions.it/geoserver/gwc/service/wmts&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wmts&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A title for Demo WMTS Service&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;autoload&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Set <code>selectedService</code> value to one of the ID of the services object ("Demo CSW Service" for example).
+<br>This will become the default service opened and used in the catalog panel.
+<br>For each service set the key of the service as the ID.</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;ID_CATALOG_SERVICE&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;the url pointing to the catalog web service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;the type of webservice used. (this need to be consistent with the web service pointed by the url)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;title&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;the label used for recognizing the catalog service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;autoload&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if true, when selected or when catalog panel is opened it will trigger an automatic search of the layers. if false, search must be manually performed.&quot;</span>
+<span class="w">  </span><span class="s2">&quot;readOnly&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;if true, makes the service not editable from catalog plugin&quot;</span>
+<span class="w">  </span><span class="s2">&quot;titleMsgId&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;optional, string used to localize the title of the service, the string must be present in translations&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;format&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;image/png8&quot;</span><span class="w"> </span><span class="c1">// the image format to use by default for layers coming from this catalog (or tiles).</span>
+<span class="w">  </span><span class="s2">&quot;layerOptions&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// optional</span>
+<span class="w">      </span><span class="s2">&quot;format&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;image/png8&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// image format needs to be configured also inside layerOptions</span>
+<span class="w">      </span><span class="s2">&quot;serverType&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;geoserver or no-vendor, depending on this some geoserver vendor extensions will be used for WMS requests.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;tileSize&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">512</span><span class="w"> </span><span class="c1">// determine the default tile size for the catalog, valid for WMS and CSW catalogs</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="s2">&quot;filter&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// applicable only for CSW service</span>
+<span class="w">      </span><span class="s2">&quot;staticFilter&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter is always applied, even when search text is NOT PRESENT&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;dynamicFilter&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter is used when search text is PRESENT and is applied in `AND` with staticFilter. The template is used with ${searchText} placeholder to append search string&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="s2">&quot;fetchMetadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// &quot;if true, the metadata is fetched for the service, applicable only for COG service</span>
+<span class="w">  </span><span class="s2">&quot;records&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="c1">// array of the COG layers of the service, applicable only for COG service</span>
+<span class="w">    </span><span class="s2">&quot;sourceMetadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;metadata of the COG layer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;bbox&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bbox formulated for the COG layer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;the url pointing to the COG layer data&quot;</span>
+<span class="w">  </span><span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>CSW service
+<br> <code>filter</code> - For both static and dynamic filter, input only xml element contained within <ogc:Filter> (i.e. Do not enclose the filter value in <ogc:Filter>)<br>
+<br>Example:<br></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;filter&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Default filter values</span>
+<span class="w">        </span><span class="s2">&quot;staticFilter&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;ogc:Or&gt;&lt;ogc:PropertyIsEqualTo&gt;&lt;ogc:PropertyName&gt;dc:type&lt;/ogc:PropertyName&gt;&lt;ogc:Literal&gt;dataset&lt;/ogc:Literal&gt;&lt;/ogc:PropertyIsEqualTo&gt;&lt;ogc:PropertyIsEqualTo&gt;&lt;ogc:PropertyName&gt;dc:type&lt;/ogc:PropertyName&gt;&lt;ogc:Literal&gt;http://purl.org/dc/dcmitype/Dataset&lt;/ogc:Literal&gt;&lt;/ogc:PropertyIsEqualTo&gt;&lt;/ogc:Or&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;dynamicFilter&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&lt;ogc:PropertyIsLike wildCard=&#39;%&#39; singleChar=&#39;_&#39; escapeChar=&#39;\\&#39;&gt;&lt;ogc:PropertyName&gt;csw:AnyText&lt;/ogc:PropertyName&gt;&lt;ogc:Literal&gt;%${searchText}%&lt;/ogc:Literal&gt;&lt;/ogc:PropertyIsLike&gt;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>COG service
+<br> <code>fetchMetadata</code> - By default, the metadata is fetched on saving the COG service for each layer (url) configured<br>
+<br> <code>records</code> -  Records of the COG layer <br>
+<br>Example:<br></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;fetchMetadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;records&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">        </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://example.tif&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;sourceMetadata&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;crs&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EPSG:32632&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;extent&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">463560</span><span class="p">,</span><span class="w"> </span><span class="mf">5758030</span><span class="p">,</span><span class="w"> </span><span class="mf">469410</span><span class="p">,</span><span class="w"> </span><span class="mf">5767210</span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;height&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">900</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;width&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;tileWidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;tileHeight&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;origin&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">463560</span><span class="p">,</span><span class="w"> </span><span class="mf">5767210</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;resolution&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;bbox&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;crs&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EPSG:32632&quot;</span>
+<span class="w">            </span><span class="s2">&quot;bounds&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">minx</span><span class="o">:</span><span class="w"> </span><span class="mf">463560</span><span class="p">,</span><span class="w"> </span><span class="nx">miny</span><span class="o">:</span><span class="w"> </span><span class="mf">5758030</span><span class="p">,</span><span class="w"> </span><span class="nx">maxx</span><span class="o">:</span><span class="w"> </span><span class="mf">469410</span><span class="p">,</span><span class="w"> </span><span class="nx">maxy</span><span class="o">:</span><span class="w"> </span><span class="mf">5767210</span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><br>Be careful to use unique IDs
+<br>Future implementations will try to detect the type from the url.
+<br>newService is used internally as the starting object for an empty service.</p>
+<p><br></p>
+<h3 id="projectiondefs-configuration">projectionDefs configuration</h3>
+<p>Custom CRS can be configured here, at root level of localConfig.json file. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;projectionDefs&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">  </span><span class="s2">&quot;code&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EPSG:3003&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;def&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;+proj=tmerc +lat_0=0 +lon_0=9 +k=0.9996 +x_0=1500000 +y_0=0 +ellps=intl+towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;extent&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1241482.0019</span><span class="p">,</span><span class="w"> </span><span class="mf">973563.1609</span><span class="p">,</span><span class="w"> </span><span class="mf">1830078.9331</span><span class="p">,</span><span class="w"> </span><span class="mf">5215189.0853</span><span class="p">],</span>
+<span class="w">  </span><span class="s2">&quot;worldExtent&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">6.6500</span><span class="p">,</span><span class="w"> </span><span class="mf">8.8000</span><span class="p">,</span><span class="w"> </span><span class="mf">12.0000</span><span class="p">,</span><span class="w"> </span><span class="mf">47.0500</span><span class="p">]</span>
+<span class="p">}]</span>
+</code></pre></div>
+<p>Explanation of these properties:</p>
+<ul>
+<li><strong>code</strong> - a code string that will identify the added projection</li>
+<li><strong>def</strong> - projection definition in PROJ.4 format</li>
+<li><strong>extent</strong> - projected bounds of the projection</li>
+<li><strong>worldExtent</strong> - bounds of the projection in WGS84</li>
+</ul>
+<p>These parameters for a projection of interest can be found on <a href="https://epsg.io">epsg.io</a></p>
+<h3 id="crs-selector-configuration">CRS Selector configuration</h3>
+<p>CRS Selector is a plugin, that is configured in the plugins section. It should look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;plugins&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="s2">&quot;desktop&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">...},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;CRSSelector&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;cfg&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;additionalCRS&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;EPSG:3003&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Monte Mario&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;filterAllowedCRS&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;EPSG:3857&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="s2">&quot;allowedRoles&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;ADMIN&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Configuration parameters are to be placed in the "cfg" object. These parameters are:</p>
+<ul>
+<li><strong>additionalCRS</strong> - object, that contains additional Coordinate Reference Systems. This configuration parameter lets you specify which projections, defined in <strong>projectionDefs</strong>, should be displayed in the CRS Selector, alongside default projections.
+Every additional CRS is a property of <strong>additionalCRS</strong> object. The name of that property is a code of a corresponding projection definition in <strong>projectionDefs</strong>. The value of that property is an object
+with the following properties:</li>
+<li><strong>label</strong> - a string, that will be displayed in the CRS Selector as a name of the projection</li>
+<li><strong>filterAllowedCRS</strong> - which default projections are to be available in the selector. Default projections are:</li>
+<li>EPSG:3857</li>
+<li>EPSG:4326</li>
+<li><strong>allowedRoles</strong> - CRS Selector will be accessible only to these roles. By default, CRS Selector will be available for any logged in user.</li>
+</ul>
+<h3 id="search-plugin-configuration">Search plugin configuration</h3>
+<p>The search plugin provides several configurations to customize the services behind the search bar in the map:</p>
+<ul>
+<li>Allow to configure more many services to use in parallel, in the <code>services</code> array.</li>
+<li>Natively supports nominatim and WFS protcols</li>
+<li>Allows to register <strong>your own</strong> custom services to develop and use in your custom project</li>
+<li>Allows to configure services in cascade, typically when you have a hierarchical data structures ( e.g. search for municipality, then for street name, than for house number, or search state,then region, then specific feature, and so on...)</li>
+</ul>
+<p>Following you can find some examples of the various configurations. For more details about the properties, please check to plugin API documentation: <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/plugins#plugins.Search">https://mapstore.geosolutionsgroup.com/mapstore/docs/api/plugins#plugins.Search</a></p>
+<p>Nominatim configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">   </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;nominatim&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s2">&quot;searchTextTemplate&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${properties.display_name}&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// text to use as searchText when an item is selected. Gets the result properties.</span>
+<span class="w">   </span><span class="s2">&quot;options&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="s2">&quot;polygon_geojson&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">     </span><span class="s2">&quot;limit&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>WFS configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;plugins&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="s2">&quot;desktop&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">...},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Search&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;cfg&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;showCoordinatesSearchOption&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;maxResults&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;searchOptions&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;services&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">            </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;wfs&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;priority&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;displayName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${properties.propToDisplay}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;subTitle&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot; (a subtitle for the results coming from this service [ can contain expressions like ${properties.propForSubtitle}])&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;options&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/geoserver/wfs&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;typeName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;workspace:layer&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;queriableAttributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;attribute_to_query&quot;</span><span class="p">],</span>
+<span class="w">              </span><span class="s2">&quot;sortBy&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;srsName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;maxFeatures&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;blacklist&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;... an array of strings to exclude from the final search filter &quot;</span><span class="p">]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>WFS configuration with nested services:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;plugins&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="s2">&quot;desktop&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">...},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Search&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;cfg&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;showCoordinatesSearchOption&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;maxResults&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;searchOptions&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;services&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">            </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;wfs&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;priority&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;displayName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${properties.propToDisplay}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;subTitle&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot; (a subtitle for the results coming from this service [ can contain expressions like ${properties.propForSubtitle}])&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;options&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/geoserver/wfs&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;typeName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;workspace:layer&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;queriableAttributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;attribute_to_query&quot;</span><span class="p">],</span>
+<span class="w">              </span><span class="s2">&quot;sortBy&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;srsName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;maxFeatures&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;blacklist&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;... an array of strings to exclude from the final search filter &quot;</span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+
+<span class="w">            </span><span class="s2">&quot;nestedPlaceholder&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;the placeholder will be displayed in the input text, after you have performed the first search&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;then&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">              </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;wfs&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;priority&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;displayName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${properties.propToDisplay} ${properties.propToDisplay}&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;subTitle&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot; (a subtitle for the results coming from this service [ can contain expressions like ${properties.propForSubtitle}])&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;searchTextTemplate&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${properties.propToDisplay}&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;options&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;staticFilter&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot; AND SOMEPROP = &#39;${properties.OLDPROP}&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// will be appended to the original filter, it gets the properties of the current selected item (of the parent service)</span>
+<span class="w">                </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/geoserver/wfs&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;typeName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;workspace:layer&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;queriableAttributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;attribute_to_query&quot;</span><span class="p">],</span>
+<span class="w">                </span><span class="s2">&quot;srsName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="s2">&quot;maxFeatures&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}]</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Custom services configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;custom Service Name&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;searchTextTemplate&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${properties.propToDisplay}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;displayName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${properties.propToDisplay}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;subTitle&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot; (a subtitle for the results coming from this service [ can contain expressions like ${properties.propForSubtitle}])&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;options&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;pathname&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/path/to/service&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;idVia&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${properties.code}&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="s2">&quot;priority&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;geomService&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;wfs&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;options&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/geoserver/wfs&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;typeName&quot;</span><span class="o">:</span><span class="w">  </span><span class="s2">&quot;workspace:layer&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;srsName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;staticFilter&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ID = ${properties.code}&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+    
+      
+      <!-- customized wrapping nav in this div to apply the color -->
+      <div class="md-footer-nav">
+      <nav
+        class="md-footer__inner md-grid"
+        aria-label="Footer"
+        
+      >
+
+        <!-- Link to previous page -->
+        
+          
+          <a
+            href="../configuration-files/"
+            class="md-footer__link md-footer__link--prev"
+            aria-label="Previous: Configuration Files"
+            rel="prev"
+          >
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Configuration Files
+              </div>
+            </div>
+          </a>
+        
+
+        <!-- Link to next page -->
+        
+          
+          <a
+            href="../plugins-documentation/"
+            class="md-footer__link md-footer__link--next"
+            aria-label="Next: Configuring plugins"
+            rel="next"
+          >
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Configuring plugins
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+        </div>
+    
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <b><a href="https://mapstore.geosolutionsgroup.com" target="_blank">MapStore&copy;</a></b> is Free and Open Source software and is licensed under the Simplified BSD License.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+    <!-- Customization -->
+    <div class="custom-footer-section md-grid">
+        <div>
+            <small>If you find something in this documentation that requires further clarifications, it is not correct or does not match your experience with MapStore, please report a <b><a href="" target="_blank">documentation issue</a></b> on GitHub.</small>
+            <br/>
+            <small>We also welcome any contributions, take a look at our <b><a href="" target="_blank">issues</a></b> on GitHub.</small>
+        </div>
+        <div>
+            Play with the <b><a href="https://mapstore.geosolutionsgroup.com" target="_blank">MapStore online Demo</a></b>.
+        </div>
+        <div className="md-footer-brand">
+            <a href="http://www.geo-solutions.it" target="_blank">
+                   <img class="md-footer-brand-img" src="../../img/geosolutions-brand.png">
+            </a>
+        </div>
+        <div>
+            <small>GeoSolutions | sales@geosolutionsgroup.com </small>
+        </div>
+        </div>
+      <!-- End of customization-->
+      <!-- Social links -->
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/geosolutions-it" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/geosolutions_it" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.8h39.1L151.1 88h-42l255.3 333.8z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://it.linkedin.com/company/geosolutions-s-a-s-" target="_blank" rel="noopener" title="it.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.indexes", "navigation.footer", "content.code.copy"], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.78eede0e.min.js"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.6.0/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

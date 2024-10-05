@@ -1,0 +1,4170 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mapstore.geosolutionsgroup.com/developer-guide/map-query-parameters/">
+      
+      
+        <link rel="prev" href="../API-usage/">
+      
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.6">
+    
+    
+      
+        <title>MapViewer query paramaters - MapStore</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0e669242.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../theme/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mapviewer-query-parameters" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapStore" class="md-header__button md-logo" aria-label="MapStore" data-md-component="logo">
+      
+  <img src="../../img/mapstore2-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapStore
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MapViewer query paramaters
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/geosolutions-it/MapStore2/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    geosolutions-it/MapStore2
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Navigation tabs -->
+<nav
+  class="md-tabs"
+  aria-label="Tabs"
+  data-md-component="tabs"
+>
+  <div class="md-grid">
+    <div style="display: flex; justify-content: space-between">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/home-page/" class="md-tabs__link">
+          
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../requirements/" class="md-tabs__link">
+          
+  
+    
+  
+  Developer Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+    <ul class="md-tabs__list">
+       <li class="md-tabs__item pull-right">
+          <a href="https://github.com/geosolutions-it/MapStore2/releases"
+            class="md-tabs__link" target="_blank">Downloads</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/plugins"
+            class="md-tabs__link" target="_blank">Plugins</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/jsapi"
+            class="md-tabs__link" target="_blank">JavaScript API</a>
+      </li>
+      <li class="md-tabs__item pull-right">
+          <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/api/framework"
+            class="md-tabs__link" target="_blank">Framework API</a>
+      </li>
+      <li class="md-tabs__item pull-right export-pdf-li" style="display:flex;" title="Export PDF"></li>
+    </ul>
+    </div>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapStore" class="md-nav__button md-logo" aria-label="MapStore" data-md-component="logo">
+      
+  <img src="../../img/mapstore2-logo.png" alt="logo">
+
+    </a>
+    MapStore
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/geosolutions-it/MapStore2/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    geosolutions-it/MapStore2
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_1">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/home-page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Page Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Managing Users and Groups
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Managing Users and Groups
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/managing-users-and-groups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/managing-users/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Users
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/managing-groups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Groups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Managing Contexts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Managing Contexts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/managing-contexts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/application-context/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Application Context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/extension-library/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extension Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/map-catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Catalog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/map-templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/resources-properties/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resources Properties
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/share/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sharing Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Maps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Maps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/exploring-maps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/toc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Table of Contents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/layer-settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Layer Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/filtering-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filtering Layers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/attributes-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attribute Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/export-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Export Layer Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/mapstore-toolbars/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MapStore Toolbars
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/print/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Printing a Map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/import/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Importing and Exporting Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Catalog Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performing Measurments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/map-views/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Views
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/street-view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Street View
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/longitudinal-profile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Longitudinal Profile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/geoprocessing-tool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoProcessing Tool
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/navigation-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/background/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Background Selector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Timeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/footer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Footer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Dashboards
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Dashboards
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/exploring-dashboards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/adding-widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/connecting-widgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connecting widgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Exploring Stories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Exploring Stories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/exploring-stories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/story-setting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Story Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/title-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Title Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/banner-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Banner Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/paragraph-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Paragraph Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/immersive-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Immersive Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/geocarousel-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoCarousel Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/media-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Media Section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/web-section/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Page section
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/text-editor-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text Editor Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/content-image-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/content-video-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Video Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/content-map-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/content-web-toolbar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Page Toolbar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/media-editor-window/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Media Editor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/configure-map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configue the map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Developer Guide
+  </span>
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../main-scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Scripts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infrastructure-and-general-architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developing with MapStore
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Developing with MapStore
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developing-with-mapstore-2-intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project-structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folders Structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developing and Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../building-and-deploying/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and Deploying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reactjs-and-redux-introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Front End Technologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins-architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plugins architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../internationalization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Internationalization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customize-theme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Styling and theming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working with Extensions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../printing-module/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Printing Module
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-to-use-a-cdn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to use CDN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-conventions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code Conventions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation-guidelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapstore-migration-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How to
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            How to
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-how-to/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dev How To
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins-howto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../writing-epics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Epics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../writing-actions-reducers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing Actions and Reducers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Application Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins-documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maps-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../externalized-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Externalize Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context-editor-config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration of Application Context Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LayerFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector-style/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Styles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Integrations
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10_1" >
+        
+          <label class="md-nav__link" for="__nav_3_10_1" id="__nav_3_10_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Users
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_10_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10_1">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/users/ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LDAP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/users/openId/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenID Connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/users/keycloak/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/users/keycloak-sso-impl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keycloak-SSO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10_2" >
+        
+          <label class="md-nav__link" for="__nav_3_10_2" id="__nav_3_10_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_10_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10_2">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/geoserver/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoServer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/infrastructure-setups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapstore-projects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MapStore Projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project-creation-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Creation Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-project-customization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Project Customization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" checked>
+        
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Communicating with MapStore
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            Communicating with MapStore
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API-usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MapViewer query paramaters
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    MapViewer query paramaters
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#passing-parameters-to-the-map" class="md-nav__link">
+    Passing parameters to the map
+  </a>
+  
+    <nav class="md-nav" aria-label="Passing parameters to the map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-request" class="md-nav__link">
+    Get Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-request" class="md-nav__link">
+    POST Request
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-parameters" class="md-nav__link">
+    Available Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-info" class="md-nav__link">
+    Feature Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplified-syntax" class="md-nav__link">
+    Simplified syntax
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    Map
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#center-zoom" class="md-nav__link">
+    Center / Zoom
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marker-zoom" class="md-nav__link">
+    Marker / Zoom
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bbox" class="md-nav__link">
+    Bbox
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addlayers" class="md-nav__link">
+    AddLayers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapinfo" class="md-nav__link">
+    MapInfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    Actions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-actions" class="md-nav__link">
+    Available actions
+  </a>
+  
+    <nav class="md-nav" aria-label="Available actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zoom-to-extent" class="md-nav__link">
+    Zoom to extent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map-info" class="md-nav__link">
+    Map info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-map-info" class="md-nav__link">
+    Scheduled Map Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-layers" class="md-nav__link">
+    Add Layers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#passing-parameters-to-the-map" class="md-nav__link">
+    Passing parameters to the map
+  </a>
+  
+    <nav class="md-nav" aria-label="Passing parameters to the map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-request" class="md-nav__link">
+    Get Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-request" class="md-nav__link">
+    POST Request
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-parameters" class="md-nav__link">
+    Available Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-info" class="md-nav__link">
+    Feature Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplified-syntax" class="md-nav__link">
+    Simplified syntax
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    Map
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#center-zoom" class="md-nav__link">
+    Center / Zoom
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marker-zoom" class="md-nav__link">
+    Marker / Zoom
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bbox" class="md-nav__link">
+    Bbox
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addlayers" class="md-nav__link">
+    AddLayers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapinfo" class="md-nav__link">
+    MapInfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    Actions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-actions" class="md-nav__link">
+    Available actions
+  </a>
+  
+    <nav class="md-nav" aria-label="Available actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zoom-to-extent" class="md-nav__link">
+    Zoom to extent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map-info" class="md-nav__link">
+    Map info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-map-info" class="md-nav__link">
+    Scheduled Map Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-layers" class="md-nav__link">
+    Add Layers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="mapviewer-query-parameters">MapViewer query parameters</h1>
+<p>In this section we will describe the available MapViewer query parameters that can be used when the map is loaded.</p>
+<p>MapStore allows to manipulate the map by passing some parameters. This allows external application to open a customized viewer generating these parameters externally. With this functionality you can modify for instance the initial position of the map, the entire map and even trigger some actions.</p>
+<h2 id="passing-parameters-to-the-map">Passing parameters to the map</h2>
+<h3 id="get-request">Get Request</h3>
+<p>The parameters can be passed in a query-string-like section, after the <code>#&lt;path&gt;?</code> of the request.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>#/viewer/new?center=0,0&amp;zoom=5
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameters in the request should be URL encoded. In order to make them more readable, the examples in this page will now apply the URL encoding.</p>
+</div>
+<h3 id="post-request">POST Request</h3>
+<p>Sometimes the request parameters can be too big to be passed in the URL, for instance when dealing with an entire map, or complex data. To overcome this kind of situations, an adhoc <code>POST</code> service available at <code>&lt;mapstore-base-path&gt;/rest/config/setParams</code> allows to pass the parameters in the request payload <code>application/x-www-form-urlencoded</code>.
+The parameters will be then passed to the client (using a temporary <code>queryParams-{random-UUID}</code> variable in <code>sessionStorage</code>).
+Near the parameters, an additional <code>page</code> value can be passed together with the params to specify to which url be redirect. If no page attribute is specified by default redirection happens to <code>#/viewer/config</code>.
+The UUID used in the <code>queryParams-{random-UUID}</code> variable name is being added to the redirect URL in a query parameter named <code>queryParamsID=</code>. Assuming to use the default redirect value, the url will then look like the following: <code>#/viewer/config?queryParamsID={random-UUID}</code>.</p>
+<p>Example <code>application/x-www-form-urlencoded</code> request payload (URL encoded):</p>
+<div class="highlight"><pre><span></span><code>page=..%2F..%2F%23%2Fviewer%2Fopenlayers%2Fnew&amp;featureinfo=&amp;bbox=&amp;center=1%2C1&amp;zoom=4
+</code></pre></div>
+<p>Here a sample page you can create to test the service:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">head</span><span class="p">&gt;&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">POST_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;rest/config/setParams&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">queryParameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;page&quot;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;../../#/viewer/config&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;map&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="mf">2</span><span class="p">,</span><span class="s2">&quot;map&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="o">:</span><span class="s2">&quot;EPSG:900913&quot;</span><span class="p">,</span><span class="s2">&quot;units&quot;</span><span class="o">:</span><span class="s2">&quot;m&quot;</span><span class="p">,</span><span class="s2">&quot;center&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="mf">1250000</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="mf">5370000</span><span class="p">,</span><span class="s2">&quot;crs&quot;</span><span class="o">:</span><span class="s2">&quot;EPSG:900913&quot;</span><span class="p">},</span><span class="s2">&quot;zoom&quot;</span><span class="o">:</span><span class="mf">5</span><span class="p">,</span><span class="s2">&quot;maxExtent&quot;</span><span class="o">:</span><span class="p">[</span><span class="o">-</span><span class="mf">20037508.34</span><span class="p">,</span><span class="o">-</span><span class="mf">20037508.34</span><span class="p">,</span><span class="mf">20037508.34</span><span class="p">,</span><span class="mf">20037508.34</span><span class="p">],</span><span class="s2">&quot;layers&quot;</span><span class="o">:</span><span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;osm&quot;</span><span class="p">,</span><span class="s2">&quot;title&quot;</span><span class="o">:</span><span class="s2">&quot;Open Street Map&quot;</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;mapnik&quot;</span><span class="p">,</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="s2">&quot;osm&quot;</span><span class="p">,</span><span class="s2">&quot;group&quot;</span><span class="o">:</span><span class="s2">&quot;background&quot;</span><span class="p">,</span><span class="s2">&quot;visibility&quot;</span><span class="o">:</span><span class="kc">true</span><span class="p">}]}},</span>
+<span class="w">            </span><span class="s2">&quot;featureinfo&quot;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;bbox&quot;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;center&quot;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;zoom&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;actions&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">createIframe</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">iframe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;iframe&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">iframe</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`_iframe-</span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">iframe</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`_iframe-</span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">iframe</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;100%&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">iframe</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;400px&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">iframe</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">iframe</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">            </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">queryParameters</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="nx">element</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">typeof</span><span class="w"> </span><span class="nx">queryParameters</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">queryParameters</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">queryParameters</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">queryParameters</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">form</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;post-form&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">form</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">base_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mapstore-base&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\/?$/</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">                </span><span class="c1">// handle GET URL</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="nx">method</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;page&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">entries</span><span class="p">());</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">queryString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">values</span>
+<span class="w">                        </span><span class="p">.</span><span class="nx">filter</span><span class="p">(([</span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">!!</span><span class="nx">v</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">qs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">qs</span><span class="si">}</span><span class="sb">&amp;</span><span class="si">${</span><span class="nx">k</span><span class="si">}</span><span class="sb">=</span><span class="si">${</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">base_url</span><span class="si">}${</span><span class="nx">page</span><span class="si">}</span><span class="sb">?</span><span class="si">${</span><span class="nx">queryString</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_blank&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">method</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;GET_IFRAME&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;page&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormData</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">entries</span><span class="p">());</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">queryString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">values</span>
+<span class="w">                        </span><span class="p">.</span><span class="nx">filter</span><span class="p">(([</span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">!!</span><span class="nx">v</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">qs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">qs</span><span class="si">}</span><span class="sb">&amp;</span><span class="si">${</span><span class="nx">k</span><span class="si">}</span><span class="sb">=</span><span class="si">${</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">iframeName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createIframe</span><span class="p">();</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">iframe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">iframeName</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">iframe</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">base_url</span><span class="si">}${</span><span class="nx">page</span><span class="si">}</span><span class="sb">?</span><span class="si">${</span><span class="nx">queryString</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="c1">// handle POST and POST_IFRAME</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="nx">method</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;POST_IFRAME&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">iframeName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createIframe</span><span class="p">();</span>
+<span class="w">                    </span><span class="nx">form</span><span class="p">.</span><span class="nx">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">iframeName</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="nx">method</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">form</span><span class="p">.</span><span class="nx">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;_blank&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="nx">form</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">base_url</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">POST_PATH</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>Options:<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>method:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;method&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>POST<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;GET&quot;</span><span class="p">&gt;</span>GET<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;GET_IFRAME&quot;</span><span class="p">&gt;</span>GET_IFRAME<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;POST_IFRAME&quot;</span><span class="p">&gt;</span>POST_IFRAME<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>MapStore Base URL:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mapstore-base&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;http://localhost:8080/mapstore/&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">input</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Place the URL of your MapStore in &quot;action&quot; --&gt;</span>
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;post-form&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;http://localhost:8080/mapstore/rest/config/setParams&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_blank&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>Params:<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;</span>map:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">textarea</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;page&quot;</span><span class="p">&gt;</span>page:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;page&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;page&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;../../#/viewer/config&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">input</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;featureinfo&quot;</span><span class="p">&gt;</span>featureinfo:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">textarea</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;featureinfo&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;featureinfo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;bbox&quot;</span><span class="p">&gt;</span>bbox:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;bbox&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;bbox&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">input</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;center&quot;</span><span class="p">&gt;</span>center:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;center&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;center&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">input</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;zoom&quot;</span><span class="p">&gt;</span>zoom:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;zoom&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;zoom&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">input</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;marker&quot;</span><span class="p">&gt;</span>marker:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;marker&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;marker&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">input</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;actions&quot;</span><span class="p">&gt;</span>actions:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">textarea</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;actions&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;actions&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;submit-form&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<h2 id="available-parameters">Available Parameters</h2>
+<h3 id="feature-info">Feature Info</h3>
+<p>Allows to trigger <a href="../../user-guide/side-bar/#identify-tool">identify tool</a> for the coordinates passed in "lat"/"lng" parameters.</p>
+<p>Optional parameter "filterNameList" allows limiting request to the specific layer names.
+It will be effectively used only if it's passed as non-empty array of layer names.
+Omitting or passing an empty array will have the same effect.</p>
+<p>GET: <code>#/viewer/config?featureinfo={"lat": 43.077, "lng": 12.656, "filterNameList": []}</code></p>
+<p>GET: <code>#/viewer/config?featureinfo={"lat": 43.077, "lng": 12.656, "filterNameList": ["layerName1", "layerName2"]}</code></p>
+<h4 id="simplified-syntax">Simplified syntax</h4>
+<p>GET: <code>#/viewer/config?featureInfo=38.72,-95.625</code></p>
+<p>Where lon,lat values are comma-separated respecting order.</p>
+<h3 id="map">Map</h3>
+<p>Allows to pass the entire map JSON definition (see the map configuration format of MapStore).</p>
+<p>GET:</p>
+<div class="highlight"><pre><span></span><code>#/viewer/config?map={&quot;version&quot;:2,&quot;map&quot;:{&quot;projection&quot;:&quot;EPSG:900913&quot;,&quot;units&quot;:&quot;m&quot;,&quot;center&quot;:{&quot;x&quot;:1250000,&quot;y&quot;:5370000,&quot;crs&quot;:&quot;EPSG:900913&quot;},&quot;zoom&quot;:5,&quot;maxExtent&quot;:[-20037508.34,-20037508.34,20037508.34,20037508.34],&quot;layers&quot;:[{&quot;type&quot;:&quot;osm&quot;,&quot;title&quot;:&quot;Open Street Map&quot;,&quot;name&quot;:&quot;mapnik&quot;,&quot;source&quot;:&quot;osm&quot;,&quot;group&quot;:&quot;background&quot;,&quot;visibility&quot;:true}]}}
+</code></pre></div>
+<p>It also allows partial overriding of existing map configuration by passing only specific properties of the root object and/or the internal "map" object.</p>
+<p>Following example will override "catalogServices" and "mapInfoConfiguration":</p>
+<div class="highlight"><pre><span></span><code>#/viewer/config?map={&quot;mapInfoConfiguration&quot;:{&quot;trigger&quot;:&quot;click&quot;,&quot;infoFormat&quot;:&quot;text/html&quot;},&quot;catalogServices&quot;:{&quot;services&quot;: {&quot;wms&quot;: {&quot;url&quot;: &quot;http://example.com/geoserver/wms&quot;,&quot;type&quot;: &quot;wms&quot;,&quot;title&quot;: &quot;WMS&quot;,&quot;autoload&quot;: true}},&quot;selectedService&quot;: &quot;wms&quot;}}
+</code></pre></div>
+<h3 id="center-zoom">Center / Zoom</h3>
+<p>GET: <code>#/viewer/config?center=0,0&amp;zoom=5</code></p>
+<p>Where lon,lat values are comma-separated respecting order.</p>
+<h3 id="marker-zoom">Marker / Zoom</h3>
+<p>GET: <code>#/viewer/config?marker=0,0&amp;zoom=5</code></p>
+<p>Where lon,lat values are comma-separated respecting order.</p>
+<h3 id="bbox">Bbox</h3>
+<p>GET: <code>#/viewer/config?bbox=8,8,53,53</code></p>
+<p>Where values are <code>minLongitude, minLatitude, maxLongitude, maxLatitude</code> respecting order.</p>
+<h3 id="addlayers">AddLayers</h3>
+<p>This is a shortened syntax for <code>CATALOG:ADD_LAYERS_FROM_CATALOGS</code> action described down below.</p>
+<p>GET: <code>#/viewer/config?addLayers=layer1;service,layer2&amp;layerFilters=attributeLayer1='value';attributeLayer2='value2'</code></p>
+<p><code>addLayers</code> parameter is a comma separated list of <code>&lt;layerName&gt;;&lt;service&gt;</code> (<code>service</code> is optional, and if present is separated
+from the layerName by a <code>;</code>.</p>
+<p>In the example above:</p>
+<ul>
+<li><code>layer1</code> and <code>layer2</code> are layer names;</li>
+<li><code>service</code> is the service identifier of the catalog.
+If no service is provided, the default service will be used.</li>
+<li><code>layerFilters</code> is a list of cql filters to apply to the corresponding layer in the same position of the <code>addLayers</code> parameter, separated by <code>;</code></li>
+</ul>
+<h3 id="mapinfo">MapInfo</h3>
+<p>This is a shortened syntax for <code>SEARCH:SEARCH_WITH_FILTER</code> action described down below.
+In opposite to direct usage of action, <code>mapInfo</code> parameter can work with layers added by <code>addLayers</code> parameter.
+In this case search execution will be postponed up to the moment when layer is added to the map.</p>
+<p><code>mapInfo</code> handler will check if <code>addLayers</code> parameter is present and if it lists layer name used in <code>mapInfo</code> parameter.
+If so, it will postpone search to ensure that layer is added to the map. Otherwise, in case of no matches, search will execute
+immediately.</p>
+<p>GET: <code>#/viewer/new?addLayers=layer1;service&amp;mapinfo=layer1&amp;mapInfoFilter=BB='cc'</code></p>
+<p>Where:</p>
+<ul>
+<li><code>layer1</code> is layer name.</li>
+<li><code>service</code> is the service name providing layer data. Service name is optional. If no service is provided, the default service of the catalog will be used.</li>
+<li><code>mapInfoFilter</code> is a cql filter applied to the layer.</li>
+</ul>
+<h3 id="background">Background</h3>
+<p>Allows to dynamically add background to the map and activate it.
+Supports default backgrounds provided by static service defined in <code>localConfig.json</code> (<code>default_map_backgrounds</code>) as well
+as other layers:</p>
+<p><code>#/viewer/new?background=Sentinel;default_map_backgrounds</code></p>
+<p><code>#/viewer/new?background=layer1;service</code></p>
+<p><code>#/viewer/new?background=layer2</code></p>
+<p>Where:</p>
+<ul>
+<li><code>Sentinel</code>, <code>layer1</code>, <code>layer2</code> are layer names,</li>
+<li><code>service</code>, <code>default_map_backgrounds</code> are the service names providing layer data. Service name is optional. If no service is provided, the default service of the catalog will be used.</li>
+</ul>
+<p>According to the implementation of <code>default_map_backgrounds</code> service, it is enough to pass desired layer name even partially, e.g. <code>background=Sen;default_map_backgrounds</code>,
+it will use the closest layer name match in this case.</p>
+<h3 id="actions">Actions</h3>
+<p>To dispatch additional actions when the map viewer is started, the <strong>actions</strong> query parameter can be used. Only actions from a configured whitelist can be dispatched in this way (see the <a href="../configuration-files/#configuring-mapstore">configuration section</a> for more details).</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">// list of actions types that are available to be launched dynamically from query param (#3817)</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">&quot;initialActionsWhiteList&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;ZOOM_TO_EXTENT&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;ADD_LAYER&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">...</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>The value of this parameter is a JSON string containing an array with an object per action. The structure of the object consist of a property type and a bunch of other properties depending on the action.</p>
+<h3 id="available-actions">Available actions</h3>
+<p>Only the following actions can be used in the <strong>actions</strong> json string.</p>
+<h4 id="zoom-to-extent">Zoom to extent</h4>
+<p>It zooms the map to the defined extent.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZOOM_TO_EXTENT&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;extent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;crs&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;maxZoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET: <code>#/viewer/config?actions=[{"type": "ZOOM_TO_EXTENT","extent": [1,2,3,4],"crs": "EPSG:4326","maxZoom": 8}]</code></p>
+<p>For more details check out the <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/#actions.map.zoomToExtent">zoomToExtent</a> in the framework documentation.</p>
+<h4 id="map-info">Map info</h4>
+<p>It performs a <a href="https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature">GetFeature</a> request on the specified layer and then a <a href="https://docs.geoserver.org/stable/en/user/services/wms/reference.html#getfeatureinfo">GetFeatureInfo</a> by taking a point from the retrieved features's geometry. This action can be used only for existing maps (map previously created).</p>
+<p>With the GetFeature request it takes the first coordinate of the geometry of the first retrieved feature; that coordinates are then used for an usual GFI (WMS GetFeatureInfo) request by limiting it to the specified layer.</p>
+<p>A <strong>cql_filter</strong> is also <strong>mandatory</strong> for that action to properly filter required data: that filter will be used in both request (GetFeature and GFI). If you don't need to apply a filter, you can use the standard INCLUDE clause (cql_filter=INCLUDE) so the whole dataset will be queried.</p>
+<p>Requirements:</p>
+<ul>
+<li>The layer specified must be visible in the map</li>
+<li>There must be a geometry that can be retrieved from the GetFeature request</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SEARCH:SEARCH_WITH_FILTER&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cql_filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ID=75&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WORKSPACE:LAYER_NAME&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET: <code>#/viewer/config?actions=[{"type":"SEARCH:SEARCH_WITH_FILTER","cql_filter":"ID=75","layer":"WORKSPACE:LAYER_NAME"}]</code></p>
+<p>The sample request below illustrates how two actions can be concatenated:</p>
+<div class="highlight"><pre><span></span><code>https://dev-mapstore.geosolutionsgroup.com/mapstore/#/viewer/4093?actions=[{&quot;type&quot;:&quot;SEARCH:SEARCH_WITH_FILTER&quot;,&quot;cql_filter&quot;:&quot;STATE_FIPS=34&quot;,&quot;layer&quot;:&quot;topp:states&quot;},{&quot;type&quot;:&quot;ZOOM_TO_EXTENT&quot;,&quot;extent&quot;:[-77.48202256347649,38.74612266051003,-72.20858506347648,40.66664704515103],&quot;crs&quot;:&quot;EPSG:4326&quot;,&quot;maxZoom&quot;:8}]
+</code></pre></div>
+<p>The MapStore invocation URL above executes the following operations:</p>
+<ul>
+<li>Execution of a search request filtering by <strong>STATE_FIPS</strong> with value 34 on the <strong>topp:states</strong> layer</li>
+<li>Execution of a map zoom to the provided extent</li>
+</ul>
+<p>For more details check out the <a href="https://mapstore.geosolutionsgroup.com/mapstore/docs/#actions.search.exports.searchLayerWithFilter">searchLayerWithFilter</a> in the framework documentation</p>
+<h4 id="scheduled-map-info">Scheduled Map Info</h4>
+<p>It works similarly to the <code>Map Info</code> action, but supports delaying of the search execution up to the moment when layer is added to the map.
+This behavior is used when search should be applied to the dynamically added layer (e.g. using <code>addLayer</code> parameter) :</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SEARCH:SCHEDULE_SEARCH_WITH_FILTER&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cql_filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ID=75&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WORKSPACE:LAYER_NAME&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET: <code>#/viewer/config?actions=[{"type":"SEARCH:SCHEDULE_SEARCH_WITH_FILTER","cql_filter":"ID=75","layer":"WORKSPACE:LAYER_NAME"},{"type":"CATALOG:ADD_LAYERS_FROM_CATALOGS","layers":["WORKSPACE:LAYER_NAME"],"sources":["catalog1"]}]</code></p>
+<h4 id="add-layers">Add Layers</h4>
+<p>This action allows to add layers directly to the map by taking them from the catalogs configured, or passed.</p>
+<p>Requirements:</p>
+<ul>
+<li>The number of layers should match the number of sources</li>
+<li>The source name can be a string that must match a catalog service name present in the map or an object that defines an external catalog (see example)</li>
+</ul>
+<p>Supported layer types are WMS, WMTS, WFS, COG, 3D Tiles and GeoJSON.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CATALOG:ADD_LAYERS_FROM_CATALOGS&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;workspace1:layer1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;workspace2:layer2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;workspace:externallayername&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;catalog1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;catalog2&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;WMS&quot;</span><span class="p">,</span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="s2">&quot;https://example.com/wms&quot;</span><span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET: <code>#/viewer/config?actions=[{"type":"CATALOG:ADD_LAYERS_FROM_CATALOGS","layers":["layer1", "layer2", "workspace:externallayername"],"sources":["catalog1", "catalog2", {"type":"WMS","url":"https://example.com/wms"}]}]</code></p>
+<p>Data of resulting layer can be additionally filtered by passing "CQL_FILTER" into the options array. Each element of array corresponds to the layer defined in action:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CATALOG:ADD_LAYERS_FROM_CATALOGS&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;workspace1:layer1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;workspace2:layer2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;workspace:externallayername&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;catalog1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;catalog2&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;WMS&quot;</span><span class="p">,</span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="s2">&quot;https://example.com/wms&quot;</span><span class="p">}],</span>
+<span class="w">    </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;params&quot;</span><span class="p">:{</span><span class="nt">&quot;CQL_FILTER&quot;</span><span class="p">:</span><span class="s2">&quot;NAME=&#39;value&#39;&quot;</span><span class="p">}},</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;params&quot;</span><span class="p">:{</span><span class="nt">&quot;CQL_FILTER&quot;</span><span class="p">:</span><span class="s2">&quot;NAME=&#39;value2&#39;&quot;</span><span class="p">}}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET <code>#/viewer/config?actions=[{"type":"CATALOG:ADD_LAYERS_FROM_CATALOGS","layers":["layer1","layer2","workspace:externallayername"],"sources":["catalog1","catalog2",{"type":"WMS","url":"https://example.com/wms"}],"options": [{"params":{"CQL_FILTER":"NAME='value'"}}, {}, {"params":{"CQL_FILTER":"NAME='value2'"}}]}]</code></p>
+<p>Number of objects passed to the options can be different to the number of layers, in this case options will be applied to the first X layers, where X is the length of options array.</p>
+<p>The COG service endpoint does not contain a default property for the name of the layer and it returns only a single record for this reason the name used in the layers array will be used to apply the title to the added COG layer:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CATALOG:ADD_LAYERS_FROM_CATALOGS&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;My huge remote satellite COG&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;cog&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="s2">&quot;https://example.com/satellite_imagery.tif&quot;</span><span class="w"> </span><span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET: <code>#/viewer/config?actions=[{"type":"CATALOG:ADD_LAYERS_FROM_CATALOGS","layers":["My huge remote satellite COG"],"sources":[{"type":"cog","url":"https://example.com/satellite_imagery.tif"}]}]</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on the internal structure optimization done on the remote COG source, the map load time might be long. Furthermore, it is not feasible to cancel metadata fetching for the COG layer(s) when loading layers via query parameters.</p>
+</div>
+<p>The 3D tiles service endpoint does not contain a default property for the name of the layer and it returns only a single record for this reason the name used in the layers array will be used to apply the title to the added 3D Tiles layer:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CATALOG:ADD_LAYERS_FROM_CATALOGS&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;My 3D Tiles Layer&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;3dtiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="s2">&quot;https://example.com/tileset-pathname/tileset.json&quot;</span><span class="w"> </span><span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET: <code>#/viewer/config?actions=[{"type":"CATALOG:ADD_LAYERS_FROM_CATALOGS","layers":["My 3D Tiles Layer"],"sources":[{"type":"3dtiles","url":"https://example.com/tileset-pathname/tileset.json"}]}]</code></p>
+<p>For the 3D Tiles you can pass also the layer options, to customize the layer. Here and example to localize the title:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CATALOG:ADD_LAYERS_FROM_CATALOGS&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;My 3D Tiles Layer&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;3dtiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="s2">&quot;https://example.com/tileset-pathname/tileset.json&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">    </span><span class="nt">&quot;options&quot;</span><span class="p">:[{</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;en-US&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LayerTitle&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;it-IT&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TitoloLivello&quot;</span><span class="w"> </span><span class="p">}}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET: <code>#/viewer/config?actions=[{"type":"CATALOG:ADD_LAYERS_FROM_CATALOGS","layers":["My 3D Tiles Layer"],"sources":[{"type":"3dtiles","url":"https://example.com/tileset-pathname/tileset.json"}],"options":[{"title":{"en-US":"LayerTitle","it-IT":"TitoloLivello"}}]}]</code></p>
+<p>It is possible to add GeoJSON layer using the following configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CATALOG:ADD_LAYERS_FROM_CATALOGS&quot;</span><span class="p">,</span>
+<span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;My GeoJSON Layer&quot;</span><span class="p">],</span>
+<span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;GEOJSON&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="s2">&quot;https://example.com/example.geojson&quot;</span><span class="w"> </span><span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GET: <code>#/viewer/config?actions=[{"type":"CATALOG:ADD_LAYERS_FROM_CATALOGS","layers":["My GeoJSON Layer"],"sources":[{"type":"GEOJSON","url":"https://example.com/example.geojson"}]}]</code></p>
+<p>This GeoJSON catalog will return a single record similar to the 3D Tiles catalog and for this reason the name used in the layers array will be used to apply the title to the added vector layer.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+    
+      
+      <!-- customized wrapping nav in this div to apply the color -->
+      <div class="md-footer-nav">
+      <nav
+        class="md-footer__inner md-grid"
+        aria-label="Footer"
+        
+      >
+
+        <!-- Link to previous page -->
+        
+          
+          <a
+            href="../API-usage/"
+            class="md-footer__link md-footer__link--prev"
+            aria-label="Previous: API usage"
+            rel="prev"
+          >
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                API usage
+              </div>
+            </div>
+          </a>
+        
+
+        <!-- Link to next page -->
+        
+      </nav>
+        </div>
+    
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <b><a href="https://mapstore.geosolutionsgroup.com" target="_blank">MapStore&copy;</a></b> is Free and Open Source software and is licensed under the Simplified BSD License.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+    <!-- Customization -->
+    <div class="custom-footer-section md-grid">
+        <div>
+            <small>If you find something in this documentation that requires further clarifications, it is not correct or does not match your experience with MapStore, please report a <b><a href="" target="_blank">documentation issue</a></b> on GitHub.</small>
+            <br/>
+            <small>We also welcome any contributions, take a look at our <b><a href="" target="_blank">issues</a></b> on GitHub.</small>
+        </div>
+        <div>
+            Play with the <b><a href="https://mapstore.geosolutionsgroup.com" target="_blank">MapStore online Demo</a></b>.
+        </div>
+        <div className="md-footer-brand">
+            <a href="http://www.geo-solutions.it" target="_blank">
+                   <img class="md-footer-brand-img" src="../../img/geosolutions-brand.png">
+            </a>
+        </div>
+        <div>
+            <small>GeoSolutions | sales@geosolutionsgroup.com </small>
+        </div>
+        </div>
+      <!-- End of customization-->
+      <!-- Social links -->
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/geosolutions-it" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/geosolutions_it" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.8h39.1L151.1 88h-42l255.3 333.8z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://it.linkedin.com/company/geosolutions-s-a-s-" target="_blank" rel="noopener" title="it.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.indexes", "navigation.footer", "content.code.copy"], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.78eede0e.min.js"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.6.0/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
