@@ -28,20 +28,20 @@ Linux: `./mapstore2_shutdown.sh`
 
 ## Package Contents
 
-* [MapStore](https://github.com/geosolutions-it/MapStore2/releases/latest)
-* [Tomcat8](http://tomcat.apache.org/)
-* [Java JRE (Win and Linux)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [MapStore](https://github.com/geosolutions-it/MapStore2/releases/latest)
+- [Tomcat8](http://tomcat.apache.org/)
+- [Java JRE (Win and Linux)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 ## Demo Maps
 
-* **Aerial Imagery** - Simple map demo showing some aerial imagery data
-* **WFS Query Map** - Demo map configured with MapStore built-in ability to query feature over WFS
-* **User Map and User1 Map** - Map only visible to *user* and *user1* respectively, to demonstrate MapStore capabilities on user/group management and permissions.
+- **Aerial Imagery** - Simple map demo showing some aerial imagery data
+- **WFS Query Map** - Demo map configured with MapStore built-in ability to query feature over WFS
+- **User Map and User1 Map** - Map only visible to _user_ and _user1_ respectively, to demonstrate MapStore capabilities on user/group management and permissions.
 
 ## Demo accounts/groups
 
 | **Users**       | **Groups**            |
-|-----------------|-----------------------|
+| --------------- | --------------------- |
 | **admin/admin** | MyGroupAdmin,everyone |
 | guest           | everyone              |
 | user/user       | everyone              |
