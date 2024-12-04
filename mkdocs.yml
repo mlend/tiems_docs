@@ -23,10 +23,13 @@ theme:
     - navigation.indexes
     - navigation.footer
     - content.code.copy
+    - search.suggest
+    - search.highlight
+
   logo: 'img/mapstore2-logo.png'
   company_url: 'https://tiems.co.za'
   company_logo: 'img/geosolutions-brand.png'
-  company_contacts: 'GeoSolutions | sales@geosolutionsgroup.com '
+  company_contacts: 'Tiems Consulting | mlend@outlook.com'
   palette:
     # Dark Mode - mike added
     - scheme: slate
@@ -79,7 +82,6 @@ markdown_extensions:
 nav:
   - Home:
       - Home: 'index.md' # To include in pdf
-      - Quick Start: 'quick-start.md'
   - TIEMS Map Portal:
       - Home Page Overview: 'map-portal/home-page.md'
       - Managing Users and Groups:
@@ -149,8 +151,8 @@ nav:
 plugins:
   - search
   - with-pdf:
-      author: GeoSolutionsGroup
-      copyright: 'MapStore©'
+      author: Tiems Consulting
+      copyright: 'Tiems'
       #
       #cover: false
       #back_cover: true
